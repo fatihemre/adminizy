@@ -1,0 +1,31 @@
+{% extends 'base.twig' %}
+{% block content %}
+    <h1>Apartmanlar</h1>
+
+    <div class="buttons">
+        <a href="/admin/apartments/create">Yeni Apartman Ekle</a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Apartman Adı</th>
+            <th>Adresi</th>
+            <th>İşlem</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for apartment in apartments %}
+            <tr>
+                <td>{{ apartment.id }}</td>
+                <td>{{ apartment.display_name }}</td>
+                <td>{{ apartment.address }}</td>
+                <td>
+                    <a href="/admin/apartments/edit/{{ apartment.id }}">Düzenle</a>
+                    <a href="/admin/apartments/remove/{{ apartment.id }}">Sil</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

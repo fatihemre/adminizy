@@ -1,0 +1,22 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+    <div class="form-container">
+        <h3 class="title">Apartman Düzenle</h3>
+        <form action="/admin/apartments/edit/{{ apartment.id }}" method="post">
+            <div class="input-row">
+                <label for="display_name">Apartman Adı:</label>
+                <input type="display_name" id="display_name" name="display_name" value="{{ apartment.display_name }}">
+            </div>
+            <div class="input-row">
+                <label for="address">Apartman Adresi:</label>
+                <input type="address" id="address" name="address" value="{{ apartment.address }}">
+            </div>
+            <div class="input-row">
+                <label></label>
+                <button type="submit">Güncelle</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

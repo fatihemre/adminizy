@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Apartman Yönetimi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="page">
+        <header>
+            <h3>Apartman Yönetimi</h3>
+        </header>
+        <div class="content">
+            <nav class="sidebar">
+                {% if user %}
+                    <p>Merhaba {{ user.display_name }},</p>
+                    <a class="nav-item" href="/admin/apartments">Apartmanlar</a>
+                    <a class="nav-item" href="/auth/logout">Çıkış Yap</a>
+                {% else %}
+                    <a class="nav-item" href="/auth/login">Giriş Yap</a>
+                {% endif %}
+
+            </nav>
+            <section class="page-content">
+                {% for type, messages in flash %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ type }}">{{ message }}</div>
+                    {% endfor %}
+                {% endfor %}
+
+                {% block content %}{% endblock %}
+            </section>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

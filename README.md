@@ -1,0 +1,2 @@
+## Kullanacağımız paketler
+[*] symfony/dotenv

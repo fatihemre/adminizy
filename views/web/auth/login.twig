@@ -1,0 +1,23 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+    <div class="form-container login">
+        <h3 class="title">Oturum Aç</h3>
+        <h1>{{ user.display_name }}</h1>
+        <form action="/auth/login" method="post">
+            <div class="input-row">
+                <label for="email">Eposta Adresi:</label>
+                <input type="email" id="email" name="email" value="">
+            </div>
+            <div class="input-row">
+                <label for="password">Parola:</label>
+                <input type="password" id="password" name="password" value="">
+            </div>
+            <div class="input-row">
+                <label></label>
+                <button type="submit">Oturum Aç</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

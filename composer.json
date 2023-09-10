@@ -1,0 +1,16 @@
+{
+    "require": {
+        "symfony/dotenv": "^6.3",
+        "izniburak/router": "^2.5",
+        "twig/twig": "^3.7",
+        "symfony/password-hasher": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eva\\": "eva"
+        },
+        "files": [
+            "eva/helpers.php"
+        ]
+    }
+}

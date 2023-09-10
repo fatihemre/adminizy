@@ -22,6 +22,7 @@ class BaseController extends \Buki\Router\Http\Controller
     {
         $args['user'] = session('user');
         $args['flash'] = (new Session())->getFlashBag()->all();
+        $args['siteName'] = config('SITE_NAME');
 
         $fullPath = $this->className() . DIRECTORY_SEPARATOR . $path . '.twig';
         return $this->view->render($fullPath, $args);

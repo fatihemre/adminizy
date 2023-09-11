@@ -1,4 +1,9 @@
 <?php
+
+use Money\Currencies\ISOCurrencies;
+use Money\Currency;
+use Money\Formatter\IntlMoneyFormatter;
+use Money\Money;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -71,5 +76,16 @@ if(!function_exists('password')){
             'memory-hard' => ['algorithm' => 'sodium']
         ]);
         return $factory->getPasswordHasher('common');
+    }
+}
+
+if(!function_exists('format_money')){
+    function format_money($amount, $currency='TRY') {
+        $amount *= 100;
+        $money = new Money($amount, new Currency($currency));
+        $currencies = new ISOCurrencies();
+
+        $numberFormatter = new \NumberFormatter(config('LOCALE'), \NumberFormatter::CURRENCY);
+        return (new IntlMoneyFormatter($numberFormatter, $currencies))->format($money);
     }
 }

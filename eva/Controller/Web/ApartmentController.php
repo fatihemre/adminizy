@@ -4,6 +4,11 @@ namespace Eva\Controller\Web;
 
 use Eva\Controller\BaseController;
 use Eva\Model\Apartment;
+use Eva\Model\Flat;
+use Money\Currencies\ISOCurrencies;
+use Money\Currency;
+use Money\Formatter\IntlMoneyFormatter;
+use Money\Money;
 use Symfony\Component\HttpFoundation\Request;
 
 class ApartmentController extends BaseController
@@ -14,6 +19,21 @@ class ApartmentController extends BaseController
         $apartments = (new Apartment())->fetchAll();
 
         return $this->view('index', ['apartments' => $apartments]);
+    }
+
+    public  function show($id)
+    {
+
+        $apartment = (new Apartment())->fetch($id);
+
+        $flats = (new Flat())->fetchAll($apartment->id);
+
+        $residents = 0;
+        foreach($flats as $flat){
+            $residents += $flat->count;
+        }
+
+        return $this->view('show', ['apartment'=>$apartment, 'flats'=>$flats, 'residents'=>$residents]);
     }
 
     public function create()

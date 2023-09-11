@@ -16,6 +16,7 @@ class BaseController extends \Buki\Router\Http\Controller
             'auto_reload' => true,
             'debug' => true
         ]);
+        $this->view->addFunction(new \Twig\TwigFunction('formatMoney', 'format_money'));
     }
 
     public function view($path, $args=[])

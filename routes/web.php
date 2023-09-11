@@ -22,6 +22,8 @@ $webRouter->group('/admin', function($webRouter){
     $webRouter->get('/apartments/edit/:id', [ApartmentController::class, 'edit']);
     $webRouter->post('/apartments/edit/:id', [ApartmentController::class, 'update']);
 
+    $webRouter->get('/apartments/show/:id', [ApartmentController::class, 'show']);
+
 }, ['before'=>AuthMiddleware::class]);
 
 $webRouter->get('/auth/login', [AuthController::class, 'login']);

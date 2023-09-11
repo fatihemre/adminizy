@@ -11,7 +11,8 @@ class Apartment
 
     public function fetch(int $apartment_id): ApartmentEntity|false
     {
-        $sth = $this->connection->prepare("SELECT * FROM apartments WHERE id = :apartment_id");
+        $sth = $this->connection->prepare("
+SELECT a.*, (SELECT count(f.id) FROM flats AS f WHERE f.apartment_id=a.id AND f.deleted_at IS NULL) as count FROM apartments AS a WHERE a.id = :apartment_id");
         $sth->execute(['apartment_id' => $apartment_id]);
         $sth->setFetchMode(\PDO::FETCH_CLASS, ApartmentEntity::class);
         return $sth->fetch();

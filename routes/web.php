@@ -3,13 +3,14 @@
 use Eva\Controller\Web\AuthController;
 use Eva\Controller\Web\AdminController;
 use Eva\Controller\Web\ApartmentController;
+use Eva\Middleware\AdminMiddleware;
 use Eva\Middleware\AuthMiddleware;
 
 $webRouter = &$router;
 
 $webRouter->get('/', function(\Symfony\Component\HttpFoundation\Request $request) {
     return redirectTo('/auth/login');
-});
+}, ['before'=> AdminMiddleware::class]);
 
 $webRouter->group('/admin', function($webRouter){
     $webRouter->get('', [AdminController::class, 'index']);

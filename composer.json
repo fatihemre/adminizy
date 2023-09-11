@@ -3,7 +3,8 @@
         "symfony/dotenv": "^6.3",
         "izniburak/router": "^2.5",
         "twig/twig": "^3.7",
-        "symfony/password-hasher": "^6.3"
+        "symfony/password-hasher": "^6.3",
+        "moneyphp/money": "^4.2"
     },
     "autoload": {
         "psr-4": {

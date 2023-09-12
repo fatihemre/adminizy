@@ -8,12 +8,12 @@ use Eva\Library\Database;
 class Building implements IModel
 {
     use Database;
-    
-    public function fetch(int $building_id): BuildingEntity|false
+
+    public function fetch(int $id): BuildingEntity|false
     {
         $sth = $this->connection->prepare("
 SELECT b.*, (SELECT count(f.id) FROM flats AS f WHERE f.building_id=b.id AND f.deleted_at IS NULL) as count FROM buildings AS b WHERE b.id = :building_id");
-        $sth->execute(['building_id' => $building_id]);
+        $sth->execute(['building_id' => $id]);
         $sth->setFetchMode(\PDO::FETCH_CLASS, BuildingEntity::class);
         return $sth->fetch();
     }
@@ -35,25 +35,24 @@ SELECT b.*, (SELECT count(f.id) FROM flats AS f WHERE f.building_id=b.id AND f.d
         return $this->connection->lastInsertId();
     }
 
-    public function update(int $building_id, array $variables): bool
+    public function update(int $id, array $variables): bool
     {
         $sth = $this->connection->prepare("UPDATE buildings SET display_name=:display_name, address=:address, updated_at=NOW() WHERE id=:building_id");
         return $sth->execute([
             'display_name' => $variables['display_name'],
             'address' => $variables['address'],
-            'building_id'=>$building_id
+            'building_id'=>$id
         ]);
     }
 
-    public function remove(int $building_id): bool
+    public function remove(int $id): bool
     {
         $sth = $this->connection->prepare("UPDATE buildings SET updated_at = NOW(), deleted_at = NOW() WHERE id=:building_id");
-        return $sth->execute(['building_id'=>$building_id]);
+        return $sth->execute(['building_id'=>$id]);
     }
 
-    public function removePermanently(int $building_id): bool
+    public function removePermanently(int $id): bool
     {
-        $sth = $this->connection->prepare("DELETE FROM buildings WHERE id=:building_id");
-        return $sth->execute(['building_id'=>$building_id]);
+        return $this->connection->prepare("DELETE FROM buildings WHERE id=:building_id")->execute(['building_id'=>$id]);
     }
 }

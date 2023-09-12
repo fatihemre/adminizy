@@ -81,7 +81,7 @@ class BuildingController extends BaseController
     }
 
     public function destroy($id) {
-        $remove = (new Building())->removePermanently($id);
+        $remove = (new Building())->remove($id);
         flash($remove ? 'success' : 'danger', $remove ? 'Apartman Silindi' : 'Apartman Silinemedi');
         return redirectTo('/admin/buildings');
     }

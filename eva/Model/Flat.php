@@ -20,13 +20,13 @@ WHERE f.id=:flat_id AND f.deleted_at is null
         return $flat->fetch();
     }
 
-    public function fetchAll(int $apartment_id): array|false
+    public function fetchAll(int $building_id): array|false
     {
         $sth = $this->connection->prepare("
 SELECT f.*,(SELECT count(r.id) FROM residents AS r WHERE flat_id=f.id AND r.deleted_at IS NULL) as count FROM flats AS f 
-WHERE f.apartment_id=:apartment_id AND f.deleted_at is null");
+WHERE f.building_id=:building_id AND f.deleted_at is null");
         $sth->execute([
-            'apartment_id' => $apartment_id
+            'building_id' => $building_id
         ]);
         $sth->setFetchMode(\PDO::FETCH_CLASS, FlatEntity::class);
         return $sth->fetchAll();

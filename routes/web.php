@@ -2,7 +2,7 @@
 
 use Eva\Controller\Web\AuthController;
 use Eva\Controller\Web\AdminController;
-use Eva\Controller\Web\ApartmentController;
+use Eva\Controller\Web\BuildingController;
 use Eva\Middleware\AdminMiddleware;
 use Eva\Middleware\AuthMiddleware;
 
@@ -14,15 +14,18 @@ $webRouter->get('/', function(\Symfony\Component\HttpFoundation\Request $request
 
 $webRouter->group('/admin', function($webRouter){
     $webRouter->get('', [AdminController::class, 'index']);
-    $webRouter->get('/apartments', [ApartmentController::class, 'index']);
-    $webRouter->get('/apartments/create', [ApartmentController::class, 'create']);
-    $webRouter->post('/apartments/create', [ApartmentController::class, 'store']);
-    $webRouter->get('/apartments/remove/:id', [ApartmentController::class, 'destroy']);
 
-    $webRouter->get('/apartments/edit/:id', [ApartmentController::class, 'edit']);
-    $webRouter->post('/apartments/edit/:id', [ApartmentController::class, 'update']);
+    $webRouter->group('/buildings', function($webRouter) {
+        $webRouter->get('', [BuildingController::class, 'index']);
+        $webRouter->get('/create', [BuildingController::class, 'create']);
+        $webRouter->post('/create', [BuildingController::class, 'store']);
+        $webRouter->get('/remove/:id', [BuildingController::class, 'destroy']);
+        $webRouter->get('/edit/:id', [BuildingController::class, 'edit']);
+        $webRouter->post('/edit/:id', [BuildingController::class, 'update']);
+        $webRouter->get('/show/:id', [BuildingController::class, 'show']);
+    });
 
-    $webRouter->get('/apartments/show/:id', [ApartmentController::class, 'show']);
+
 
 }, ['before'=>AuthMiddleware::class]);
 

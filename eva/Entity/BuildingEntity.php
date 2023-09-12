@@ -2,7 +2,7 @@
 
 namespace Eva\Entity;
 
-class ApartmentEntity
+class BuildingEntity
 {
     public $id;
     public $display_name;

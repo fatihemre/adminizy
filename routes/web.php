@@ -26,7 +26,7 @@ $webRouter->group('/admin', function($webRouter){
 
 }, ['before'=>AuthMiddleware::class]);
 
-$webRouter->get('/auth/login', [AuthController::class, 'login']);
+$webRouter->get('/auth/login', [AuthController::class, 'login'], ['before'=> AdminMiddleware::class]);
 $webRouter->post('/auth/login', [AuthController::class, 'check']);
 
 $webRouter->get('/auth/logout', [AuthController::class, 'logout']);

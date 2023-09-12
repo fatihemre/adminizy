@@ -5,10 +5,10 @@ namespace Eva\Model;
 use Eva\Entity\BuildingEntity;
 use Eva\Library\Database;
 
-class Building
+class Building implements IModel
 {
     use Database;
-
+    
     public function fetch(int $building_id): BuildingEntity|false
     {
         $sth = $this->connection->prepare("
@@ -17,6 +17,7 @@ SELECT b.*, (SELECT count(f.id) FROM flats AS f WHERE f.building_id=b.id AND f.d
         $sth->setFetchMode(\PDO::FETCH_CLASS, BuildingEntity::class);
         return $sth->fetch();
     }
+
     public function fetchAll(): array|false
     {
         $sth = $this->connection->query("SELECT * FROM buildings WHERE deleted_at is null");

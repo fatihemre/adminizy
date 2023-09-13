@@ -3,6 +3,7 @@
 use Eva\Controller\Web\AuthController;
 use Eva\Controller\Web\AdminController;
 use Eva\Controller\Web\BuildingController;
+use Eva\Controller\Web\FlatController;
 use Eva\Middleware\AdminMiddleware;
 use Eva\Middleware\AuthMiddleware;
 
@@ -23,6 +24,18 @@ $webRouter->group('/admin', function($webRouter){
         $webRouter->get('/edit/:id', [BuildingController::class, 'edit']);
         $webRouter->post('/edit/:id', [BuildingController::class, 'update']);
         $webRouter->get('/show/:id', [BuildingController::class, 'show']);
+    });
+
+    $webRouter->group('/flats', function($webRouter) {
+        $webRouter->get('/create/:id', [FlatController::class, 'create']);
+        $webRouter->post('/create/:id', [FlatController::class, 'store']);
+
+        $webRouter->get('/show/:id', [FlatController::class, 'show']);
+
+        $webRouter->get('/edit/:id', [FlatController::class, 'edit']);
+        $webRouter->post('/edit/:id', [FlatController::class, 'update']);
+
+        $webRouter->get('/remove/:id', [FlatController::class, 'destroy']);
     });
 
 

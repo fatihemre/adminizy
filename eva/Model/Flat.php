@@ -31,4 +31,26 @@ WHERE f.building_id=:building_id AND f.deleted_at is null");
         $sth->setFetchMode(\PDO::FETCH_CLASS, FlatEntity::class);
         return $sth->fetchAll();
     }
+
+    public function insert(int $building_id, array $variables): int|false
+    {
+        $sth = $this->connection->prepare("INSERT INTO flats (building_id, display_name, amount) VALUES (:building_id, :display_name, :amount)");
+        $sth->execute([
+            'building_id' => $building_id,
+            'display_name' => $variables['display_name'],
+            'amount' => $variables['amount']
+        ]);
+        return $this->connection->lastInsertId();
+    }
+
+    public function remove(int $id): bool
+    {
+        $sth = $this->connection->prepare("UPDATE flats SET updated_at = NOW(), deleted_at = NOW() WHERE id=:flat_id");
+        return $sth->execute(['flat_id'=>$id]);
+    }
+
+    public function removePermanently(int $id): bool
+    {
+        return $this->connection->prepare("DELETE FROM flats WHERE id=:flat_id")->execute(['flat_id'=>$id]);
+    }
 }

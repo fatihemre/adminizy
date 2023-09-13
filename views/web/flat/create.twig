@@ -1,0 +1,22 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+    <div class="form-container">
+        <h3 class="title">{{ building.display_name }} içerisine Daire Ekle</h3>
+        <form action="/admin/flats/create/{{ building.id }}" method="post">
+            <div class="input-row">
+                <label for="display_name">Daire Numarası:</label>
+                <input type="display_name" id="display_name" name="display_name" value="">
+            </div>
+            <div class="input-row">
+                <label for="amount">Başlangıç Bakiyesi:</label>
+                <input type="number" step=".01" id="amount" name="amount" value="0">
+            </div>
+            <div class="input-row">
+                <label></label>
+                <button type="submit">Ekle</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

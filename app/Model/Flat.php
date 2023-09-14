@@ -1,9 +1,9 @@
 <?php
 
-namespace Eva\Model;
+namespace Apteasy\Model;
 
-use Eva\Entity\FlatEntity;
-use Eva\Library\Database;
+use Apteasy\Entity\FlatEntity;
+use Apteasy\Library\Database;
 
 class Flat
 {

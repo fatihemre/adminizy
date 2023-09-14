@@ -1,6 +1,6 @@
 <?php
 
-namespace Eva\Library;
+namespace Apteasy\Library;
 
 trait Database {
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Eva\Model;
+namespace Apteasy\Model;
 
-use Eva\Entity\BuildingEntity;
-use Eva\Library\Database;
+use Apteasy\Entity\BuildingEntity;
+use Apteasy\Library\Database;
 
 class Building implements IModel
 {

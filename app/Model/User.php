@@ -1,9 +1,9 @@
 <?php
 
-namespace Eva\Model;
+namespace Apteasy\Model;
 
-use Eva\Entity\UserEntity;
-use Eva\Library\Database;
+use Apteasy\Entity\UserEntity;
+use Apteasy\Library\Database;
 
 class User
 {

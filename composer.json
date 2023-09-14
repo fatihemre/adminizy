@@ -8,10 +8,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Eva\\": "eva"
+            "Apteasy\\": "app"
         },
         "files": [
-            "eva/helpers.php"
+            "app/helpers.php"
         ]
     }
 }

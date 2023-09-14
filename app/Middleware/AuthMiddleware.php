@@ -1,6 +1,6 @@
 <?php
 
-namespace Eva\Middleware;
+namespace Apteasy\Middleware;
 
 use Buki\Router\Http\Middleware;
 use Symfony\Component\HttpFoundation\Request;

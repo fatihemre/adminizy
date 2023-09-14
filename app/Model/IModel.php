@@ -1,6 +1,6 @@
 <?php
 
-namespace Eva\Model;
+namespace Apteasy\Model;
 
 interface IModel
 {

@@ -1,12 +1,13 @@
 <?php
 
-namespace Eva\Entity;
+namespace Apteasy\Entity;
 
-class BuildingEntity
+class UserEntity
 {
     public $id;
     public $display_name;
-    public $address;
+    public $email;
+    public $password;
     public $created_at;
     public $updated_at;
     public $deleted_at;

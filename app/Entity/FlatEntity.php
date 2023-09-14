@@ -1,6 +1,6 @@
 <?php
 
-namespace Eva\Entity;
+namespace Apteasy\Entity;
 
 class FlatEntity
 {

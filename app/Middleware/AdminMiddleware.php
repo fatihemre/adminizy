@@ -1,9 +1,9 @@
 <?php
 
-namespace Eva\Middleware;
+namespace Apteasy\Middleware;
 
 use Buki\Router\Http\Middleware;
-use Eva\Entity\UserEntity;
+use Apteasy\Entity\UserEntity;
 use Symfony\Component\HttpFoundation\Request;
 
 class AdminMiddleware extends Middleware {

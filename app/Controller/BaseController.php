@@ -1,8 +1,8 @@
 <?php
 
-namespace Eva\Controller;
+namespace Apteasy\Controller;
 
-use Eva\Library\Breadcrumbs;
+use Apteasy\Library\Breadcrumbs;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class BaseController extends \Buki\Router\Http\Controller
@@ -37,7 +37,7 @@ class BaseController extends \Buki\Router\Http\Controller
     public function className(): string
     {
         $className = (new \ReflectionClass(get_called_class()))->getName();
-        $className = str_replace(['Eva\\Controller\\', 'Controller'], '', $className);
+        $className = str_replace(['Apteasy\\Controller\\', 'Controller'], '', $className);
 
         return strtolower(str_replace('\\', DIRECTORY_SEPARATOR, $className));
     }

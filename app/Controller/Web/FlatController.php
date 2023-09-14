@@ -1,10 +1,10 @@
 <?php
 
-namespace Eva\Controller\Web;
+namespace Apteasy\Controller\Web;
 
-use Eva\Controller\BaseController;
-use Eva\Model\Building;
-use Eva\Model\Flat;
+use Apteasy\Controller\BaseController;
+use Apteasy\Model\Building;
+use Apteasy\Model\Flat;
 use Symfony\Component\HttpFoundation\Request;
 
 class FlatController extends BaseController

@@ -1,9 +1,9 @@
 <?php
 
-namespace Eva\Controller\Web;
+namespace Apteasy\Controller\Web;
 
-use Eva\Controller\BaseController;
-use Eva\Model\User;
+use Apteasy\Controller\BaseController;
+use Apteasy\Model\User;
 use Symfony\Component\HttpFoundation\Request;
 
 class AuthController extends BaseController

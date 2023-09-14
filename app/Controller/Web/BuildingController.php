@@ -1,14 +1,10 @@
 <?php
 
-namespace Eva\Controller\Web;
+namespace Apteasy\Controller\Web;
 
-use Eva\Controller\BaseController;
-use Eva\Model\Building;
-use Eva\Model\Flat;
-use Money\Currencies\ISOCurrencies;
-use Money\Currency;
-use Money\Formatter\IntlMoneyFormatter;
-use Money\Money;
+use Apteasy\Controller\BaseController;
+use Apteasy\Model\Building;
+use Apteasy\Model\Flat;
 use Symfony\Component\HttpFoundation\Request;
 
 class BuildingController extends BaseController

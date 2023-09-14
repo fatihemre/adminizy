@@ -1,8 +1,8 @@
 <?php
 
-namespace Eva\Controller\Web;
+namespace Apteasy\Controller\Web;
 
-use Eva\Controller\BaseController;
+use Apteasy\Controller\BaseController;
 
 class AdminController extends BaseController
 {

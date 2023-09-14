@@ -8,14 +8,14 @@ require_once './vendor/autoload.php';
 
 try {
 
-    $router = new Eva\Library\Router([
+    $router = new Apteasy\Library\Router([
         'paths' => [
-            'controllers' => APP_PATH . '/eva/Controller',
-            'middlewares' => APP_PATH . '/eva/Middleware'
+            'controllers' => APP_PATH . '/app/Controller',
+            'middlewares' => APP_PATH . '/app/Middleware'
         ],
         'namespaces' => [
-            'controllers' => 'Eva\Controller',
-            'middlewares' => 'Eva\Middleware'
+            'controllers' => 'Apteasy\Controller',
+            'middlewares' => 'Apteasy\Middleware'
         ],
         'debug' => true
     ]);

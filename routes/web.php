@@ -1,11 +1,11 @@
 <?php
 
-use Eva\Controller\Web\AuthController;
-use Eva\Controller\Web\AdminController;
-use Eva\Controller\Web\BuildingController;
-use Eva\Controller\Web\FlatController;
-use Eva\Middleware\AdminMiddleware;
-use Eva\Middleware\AuthMiddleware;
+use Apteasy\Controller\Web\AuthController;
+use Apteasy\Controller\Web\AdminController;
+use Apteasy\Controller\Web\BuildingController;
+use Apteasy\Controller\Web\FlatController;
+use Apteasy\Middleware\AdminMiddleware;
+use Apteasy\Middleware\AuthMiddleware;
 
 $webRouter = &$router;
 

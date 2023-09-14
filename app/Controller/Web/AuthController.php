@@ -4,23 +4,24 @@ namespace Apteasy\Controller\Web;
 
 use Apteasy\Controller\BaseController;
 use Apteasy\Model\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class AuthController extends BaseController
 {
 
-    public function login()
+    public function login(): string
     {
         return $this->view('login');
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         session('user', -1);
         return redirectTo('/');
     }
 
-    public function check(Request $request)
+    public function check(Request $request): RedirectResponse
     {
         $email = $request->get('email');
         $password = $request->get('password');

@@ -32,24 +32,24 @@ WHERE f.building_id=:building_id AND f.deleted_at is null");
         return $sth->fetchAll();
     }
 
-    public function insert(int $building_id, array $variables): int|false
+    public function insert(FlatEntity $entity): int|false
     {
         $sth = $this->connection->prepare("INSERT INTO flats (building_id, display_name, amount) VALUES (:building_id, :display_name, :amount)");
         $sth->execute([
-            'building_id' => $building_id,
-            'display_name' => $variables['display_name'],
-            'amount' => $variables['amount']
+            'building_id' => $entity->building_id,
+            'display_name' => $entity->display_name,
+            'amount' => $entity->amount
         ]);
         return $this->connection->lastInsertId();
     }
 
-    public function update(int $flat_id, array $variables): bool
+    public function update(FlatEntity $entity): bool
     {
         $sth = $this->connection->prepare("UPDATE flats SET display_name=:display_name, amount=:amount, updated_at=NOW() WHERE id=:flat_id");
         return $sth->execute([
-            'display_name' => $variables['display_name'],
-            'amount' => $variables['amount'],
-            'flat_id'=>$flat_id
+            'display_name' => $entity->display_name,
+            'amount' => $entity->amount,
+            'flat_id'=>$entity->id
         ]);
     }
 

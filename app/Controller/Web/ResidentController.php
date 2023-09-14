@@ -4,6 +4,7 @@ namespace Apteasy\Controller\Web;
 
 use Apteasy\Controller\BaseController;
 use Apteasy\Entity\ResidentEntity;
+use Apteasy\Model\Building;
 use Apteasy\Model\Flat;
 use Apteasy\Model\Resident;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -11,15 +12,24 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ResidentController extends BaseController
 {
-    public function __construct()
+    private function breadcrumb(int $flat_id = 0, int $resident_id = 0)
     {
-        parent::__construct();
+        if($flat_id === 0 && $resident_id === 0)
+            return false;
+
+        $resident = $resident_id > 0 ? (new Resident())->fetch($resident_id) : false;
+        $flat = (new Flat())->fetch($flat_id > 0 ? $flat_id : $resident->flat_id);
+        $building = (new Building())->fetch($flat->building_id);
         $this->breadcrumbs->add('Apartmanlar', '/admin/buildings');
+        $this->breadcrumbs->add($building->display_name, '/admin/buildings/show/' . $building->id);
+        $this->breadcrumbs->add($flat->display_name, '/admin/flats/show/' . $flat->id);
+
+        return $resident ?: $flat;
     }
 
     public function create(int $flat_id): string
     {
-        $flat = (new Flat())->fetch($flat_id);
+        $flat = $this->breadcrumb($flat_id, 0);
         return $this->view('create', ['flat' => $flat]);
     }
 
@@ -54,8 +64,7 @@ class ResidentController extends BaseController
 
     public function edit(int $resident_id): string
     {
-        $resident = (new Resident())->fetch($resident_id);
-
+        $resident = $this->breadcrumb(0, $resident_id);
         return $this->view('edit', ['resident' => $resident]);
     }
 
@@ -92,7 +101,7 @@ class ResidentController extends BaseController
     {
         $resident = new Resident();
         $getResident = $resident->fetch($resident_id);
-        $remove = $resident->removePermanently($resident_id);
+        $remove = $resident->remove($resident_id);
         flash($remove ? 'success' : 'danger', $remove ? 'Daire sakini silindi' : 'Daire sakini silinemedi');
         return redirectTo('/admin/flats/show/' . $getResident->flat_id);
 

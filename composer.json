@@ -4,7 +4,8 @@
         "izniburak/router": "^2.5",
         "twig/twig": "^3.7",
         "symfony/password-hasher": "^6.3",
-        "moneyphp/money": "^4.2"
+        "moneyphp/money": "^4.2",
+        "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {

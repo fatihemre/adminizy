@@ -3,8 +3,10 @@
 namespace Apteasy\Controller\Web;
 
 use Apteasy\Controller\BaseController;
+use Apteasy\Entity\BuildingEntity;
 use Apteasy\Model\Building;
 use Apteasy\Model\Flat;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class BuildingController extends BaseController
@@ -43,17 +45,18 @@ class BuildingController extends BaseController
         return $this->view('create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $display_name = $request->get('display_name');
-        $address = $request->get('address');
+        $entity = new BuildingEntity();
+        $entity->display_name = $request->get('display_name');
+        $entity->address = $request->get('address');
 
-        if($display_name === '' || $address === '') {
+        if($entity->display_name === '' || $entity->address === '') {
             flash('danger', 'Lütfen formu tam olarak doldurun.');
             return redirectTo('/admin/buildings/create');
         }
 
-        $insert = (new Building())->insert(['display_name' => $display_name, 'address' =>$address]);
+        $insert = (new Building())->insert($entity);
 
         if($insert) {
             flash('success', 'Apartman Eklendi');
@@ -62,7 +65,6 @@ class BuildingController extends BaseController
 
         flash('danger', 'Apartman Eklenemedi.');
         return redirectTo('/admin/buildings/create');
-
     }
 
     public function edit($id)

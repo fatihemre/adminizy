@@ -5,7 +5,7 @@ namespace Apteasy\Model;
 use Apteasy\Entity\BuildingEntity;
 use Apteasy\Library\Database;
 
-class Building implements IModel
+class Building
 {
     use Database;
 
@@ -25,12 +25,12 @@ SELECT b.*, (SELECT count(f.id) FROM flats AS f WHERE f.building_id=b.id AND f.d
         return $sth->fetchAll();
     }
 
-    public function insert(array $variables): int|false
+    public function insert(BuildingEntity $entity): int|false
     {
         $sth =$this->connection->prepare("INSERT INTO buildings (display_name, address) VALUES (:display_name, :address)");
         $sth->execute([
-            'display_name' => $variables['display_name'],
-            'address' => $variables['address']
+            'display_name' => $entity->display_name,
+            'address' => $entity->address
         ]);
         return $this->connection->lastInsertId();
     }

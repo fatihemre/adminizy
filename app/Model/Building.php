@@ -35,13 +35,13 @@ SELECT b.*, (SELECT count(f.id) FROM flats AS f WHERE f.building_id=b.id AND f.d
         return $this->connection->lastInsertId();
     }
 
-    public function update(int $id, array $variables): bool
+    public function update(BuildingEntity $entity): bool
     {
         $sth = $this->connection->prepare("UPDATE buildings SET display_name=:display_name, address=:address, updated_at=NOW() WHERE id=:building_id");
         return $sth->execute([
-            'display_name' => $variables['display_name'],
-            'address' => $variables['address'],
-            'building_id'=>$id
+            'display_name' => $entity->display_name,
+            'address' => $entity->address,
+            'building_id'=>$entity->id
         ]);
     }
 

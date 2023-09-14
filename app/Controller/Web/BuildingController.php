@@ -76,12 +76,15 @@ class BuildingController extends BaseController
         return $this->view('edit', ['building'=>$building]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
-        $display_name = $request->get('display_name');
-        $address = $request->get('address');
+        $entity = new BuildingEntity();
+        $entity->id = $id;
+        $entity->display_name = $request->get('display_name');
+        $entity->address = $request->get('address');
 
-        $update = (new Building())->update($id, ['display_name' => $display_name, 'address' =>$address]);
+        $update = (new Building())->update($entity);
+
         flash($update ? 'success' : 'danger', $update ? 'Apartman Güncellendi' : 'Apartman Güncellenemedi');
         return redirectTo('/admin/buildings');
     }

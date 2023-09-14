@@ -3,27 +3,31 @@
 namespace Apteasy\Controller;
 
 use Apteasy\Library\Breadcrumbs;
+use Buki\Router\Http\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
-class BaseController extends \Buki\Router\Http\Controller
+class BaseController extends Controller
 {
-    protected \Twig\Environment $view;
+    protected Environment $view;
     protected Breadcrumbs $breadcrumbs;
 
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader(APP_PATH .'/views/');
-        $this->view = new \Twig\Environment($loader, [
+        $loader = new FilesystemLoader(APP_PATH .'/views/');
+        $this->view = new Environment($loader, [
             'cache' => APP_PATH . '/storage/cache/views',
             'auto_reload' => true,
             'debug' => true
         ]);
-        $this->view->addFunction(new \Twig\TwigFunction('formatMoney', 'format_money'));
+        $this->view->addFunction(new TwigFunction('formatMoney', 'format_money'));
 
         $this->breadcrumbs = new Breadcrumbs();
     }
 
-    public function view($path, $args=[])
+    public function view($path, $args=[]): string
     {
         $args['user'] = session('user');
         $args['flash'] = (new Session())->getFlashBag()->all();

@@ -137,6 +137,12 @@
     margin-right:.375rem;
     line-height:1.25rem;
 }
+.address>svg.green{
+    color: green;
+}
+.address>svg.red {
+    color: red;
+}
 .nav-item, .button{
     text-decoration: none;
     padding:0.5rem 0.75rem 0.5rem;

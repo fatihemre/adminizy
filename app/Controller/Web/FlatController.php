@@ -6,6 +6,7 @@ use Apteasy\Controller\BaseController;
 use Apteasy\Entity\FlatEntity;
 use Apteasy\Model\Building;
 use Apteasy\Model\Flat;
+use Apteasy\Model\Resident;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,7 +21,13 @@ class FlatController extends BaseController
 
     public function show($id): string
     {
-        return $this->view('show');
+        $flat = (new Flat)->fetch($id);
+        $building = (new Building())->fetch($flat->building_id);
+        $residents = (new Resident())->fetchAll($flat->id);
+
+        $this->breadcrumbs->add($building->display_name, '/admin/buildings/show/' . $building->id);
+
+        return $this->view('show', ['flat' => $flat, 'building' => $building, 'residents' => $residents]);
     }
 
     public function create($building_id): string

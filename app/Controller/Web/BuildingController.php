@@ -18,14 +18,14 @@ class BuildingController extends BaseController
         $this->breadcrumbs->add('Apartmanlar', '/admin/buildings');
     }
 
-    public function index()
+    public function index(): string
     {
         $buildings = (new Building())->fetchAll();
 
         return $this->view('index', ['buildings' => $buildings]);
     }
 
-    public  function show($id)
+    public  function show($id): string
     {
 
         $building = (new Building())->fetch($id);
@@ -40,7 +40,7 @@ class BuildingController extends BaseController
         return $this->view('show', ['building'=>$building, 'flats'=>$flats, 'residents'=>$residents]);
     }
 
-    public function create()
+    public function create(): string
     {
         return $this->view('create');
     }
@@ -67,7 +67,7 @@ class BuildingController extends BaseController
         return redirectTo('/admin/buildings/create');
     }
 
-    public function edit($id)
+    public function edit($id): string
     {
         $building = (new Building())->fetch($id);
 
@@ -89,7 +89,8 @@ class BuildingController extends BaseController
         return redirectTo('/admin/buildings');
     }
 
-    public function destroy($id) {
+    public function destroy($id): RedirectResponse
+    {
         $remove = (new Building())->remove($id);
         flash($remove ? 'success' : 'danger', $remove ? 'Apartman Silindi' : 'Apartman Silinemedi');
         return redirectTo('/admin/buildings');

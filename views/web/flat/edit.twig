@@ -2,15 +2,15 @@
 {% block content %}
 
     <div class="form-container">
-        <h3 class="title">Apartman Düzenle</h3>
-        <form action="/admin/buildings/edit/{{ building.id }}" method="post">
+        <h3 class="title">Daireyi Düzenle</h3>
+        <form action="/admin/flats/edit/{{ flat.id }}" method="post">
             <div class="input-row">
-                <label for="display_name">Apartman Adı:</label>
-                <input type="display_name" id="display_name" name="display_name" value="{{ building.display_name }}">
+                <label for="display_name">Daire Numarası:</label>
+                <input type="text" id="display_name" name="display_name" value="{{ flat.display_name }}">
             </div>
             <div class="input-row">
-                <label for="address">Apartman Adresi:</label>
-                <input type="address" id="address" name="address" value="{{ building.address }}">
+                <label for="amount">Başlangıç Bakiyesi:</label>
+                <input type="number" step=".01" id="amount" name="amount" value="{{ flat.amount }}">
             </div>
             <div class="input-row">
                 <label></label>

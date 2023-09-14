@@ -14,6 +14,12 @@ use Symfony\Component\HttpFoundation\Request;
 class BuildingController extends BaseController
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->breadcrumbs->add('Apartmanlar', '/admin/buildings');
+    }
+
     public function index()
     {
         $buildings = (new Building())->fetchAll();
@@ -66,6 +72,8 @@ class BuildingController extends BaseController
     public function edit($id)
     {
         $building = (new Building())->fetch($id);
+
+        $this->breadcrumbs->add($building->display_name, '/admin/buildings/show/' . $building->id);
 
         return $this->view('edit', ['building'=>$building]);
     }

@@ -43,6 +43,16 @@ WHERE f.building_id=:building_id AND f.deleted_at is null");
         return $this->connection->lastInsertId();
     }
 
+    public function update(int $flat_id, array $variables): bool
+    {
+        $sth = $this->connection->prepare("UPDATE flats SET display_name=:display_name, amount=:amount, updated_at=NOW() WHERE id=:flat_id");
+        return $sth->execute([
+            'display_name' => $variables['display_name'],
+            'amount' => $variables['amount'],
+            'flat_id'=>$flat_id
+        ]);
+    }
+
     public function remove(int $id): bool
     {
         $sth = $this->connection->prepare("UPDATE flats SET updated_at = NOW(), deleted_at = NOW() WHERE id=:flat_id");

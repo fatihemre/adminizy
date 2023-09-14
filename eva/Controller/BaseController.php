@@ -2,11 +2,13 @@
 
 namespace Eva\Controller;
 
+use Eva\Library\Breadcrumbs;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class BaseController extends \Buki\Router\Http\Controller
 {
-    protected $view;
+    protected \Twig\Environment $view;
+    protected Breadcrumbs $breadcrumbs;
 
     public function __construct()
     {
@@ -17,6 +19,8 @@ class BaseController extends \Buki\Router\Http\Controller
             'debug' => true
         ]);
         $this->view->addFunction(new \Twig\TwigFunction('formatMoney', 'format_money'));
+
+        $this->breadcrumbs = new Breadcrumbs();
     }
 
     public function view($path, $args=[])
@@ -24,6 +28,7 @@ class BaseController extends \Buki\Router\Http\Controller
         $args['user'] = session('user');
         $args['flash'] = (new Session())->getFlashBag()->all();
         $args['siteName'] = config('SITE_NAME');
+        $args['breadcrumbs'] = $this->breadcrumbs;
 
         $fullPath = $this->className() . DIRECTORY_SEPARATOR . $path . '.twig';
         return $this->view->render($fullPath, $args);

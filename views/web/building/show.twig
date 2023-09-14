@@ -47,7 +47,7 @@
                 <td>{{ flat.count > 0 ? flat.count : 'Daire Boş' }}</td>
                 <td><span style="color:{{ flat.amount > 0 ? 'red' : 'green' }}">{{ formatMoney(flat.amount) }}</span></td>
                 <td width="150">
-                    <a href="javascript:;" class="button only-icon"
+                    <a href="/admin/flats/show/{{ flat.id }}" class="button only-icon"
                        aria-label="Detaylar" data-microtip-position="top" role="tooltip"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

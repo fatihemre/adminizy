@@ -7,7 +7,7 @@ use Apteasy\Controller\BaseController;
 class AdminController extends BaseController
 {
 
-    public function index()
+    public function index(): string
     {
         return $this->view('index');
     }

@@ -29,7 +29,7 @@ class AuthController extends BaseController
         $user = (new User())->fetch($email);
 
         if(!$user) {
-            flash('warning', 'User not found');
+            flash('warning', 'Username/Password incorrect.');
             return redirectTo('/auth/login');
         }
 

@@ -1,3 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-    confirm.listeners()
+    confirm.listeners();
+    message.listeners();
 });

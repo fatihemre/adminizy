@@ -55,4 +55,10 @@ SELECT b.*, (SELECT count(f.id) FROM flats AS f WHERE f.building_id=b.id AND f.d
     {
         return $this->connection->prepare("DELETE FROM buildings WHERE id=:building_id")->execute(['building_id'=>$id]);
     }
+
+    public function total(): int
+    {
+        $sth = $this->connection->query("SELECT count(id) FROM buildings WHERE deleted_at IS NULL");
+        return (int) $sth->fetchColumn();
+    }
 }

@@ -1,4 +1,21 @@
 {% extends 'base.twig' %}
 {% block content %}
-    <h1>Apartman Yönetim Paneline Hoşgeldiniz</h1>
+    <div class="stats">
+        <div class="stat-box">
+            <h4>Toplam Apartman</h4>
+            <div>{{ stats['buildings'] }}</div>
+        </div>
+        <div class="stat-box">
+            <h4>Toplam Daire</h4>
+            <div>{{ stats['flats'] }}</div>
+        </div>
+        <div class="stat-box">
+            <h4>Toplam Daire Sakini</h4>
+            <div>{{ stats['residents'] }}</div>
+        </div>
+        <div class="stat-box">
+            <h4>Toplam Açık Bakiye</h4>
+            <div>{{ stats['amount'] }}</div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-- [ ] (stats-on-dashboard) Anasayfada toplam apartman, toplam daire, toplam yaşayan kişi ve toplam açık bakiye bilgileri kutu şeklinde görünür olsun.
+- [x] ~~([#stats-on-dashboard](https://github.com/fatihemre/apteasy/tree/stats-on-dashboard)) Anasayfada toplam apartman, toplam daire, toplam yaşayan kişi ve toplam açık bakiye bilgileri kutu şeklinde görünür olsun.~~
 - [ ] (automation-for-maintenance-fee) Otomatik olarak tüm apartmanlara aidat ekleyen bir betik olsun. Bu betik belirlediğimiz tarihte çalışıp, o aynı aidatını tüm dairelere eklesin.
 - [ ] (add-maintenance-fee-column-for-buildings) Her apartmanın aidat bilgisi farklı olacağından, apartman eklerken bu apartmanın aidat miktarını da yazabilelim.
 - [ ] (add-transaction) Bir apartmanın daireler listesinde "Transaction Ekle" butonu olsun. Ve aidat elden alınmışsa transaction manuel eklenebilsin.

@@ -63,4 +63,13 @@ WHERE f.building_id=:building_id AND f.deleted_at is null");
     {
         return $this->connection->prepare("DELETE FROM flats WHERE id=:flat_id")->execute(['flat_id'=>$id]);
     }
+
+    public function total()
+    {
+        $sth = $this->connection->query("SELECT count(id) as totalFlats, sum(amount) as totalAmount FROM flats WHERE 
+                                deleted_at IS NULL AND 
+                                building_id IN (SELECT id FROM buildings WHERE deleted_at IS NULL) ");
+        $sth->setFetchMode(\PDO::FETCH_OBJ);
+        return $sth->fetch();
+    }
 }

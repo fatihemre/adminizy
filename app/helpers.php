@@ -22,8 +22,9 @@ if(!function_exists('config')) {
     }
 }
 
-if(!function_exists('debug')) {
-    function debug($arg, $exit = true, $preFormatter = true) {
+if(!function_exists('dump')) {
+    function dump($arg, $exit = true, $preFormatter = true): void
+    {
 
         if($preFormatter)
             echo '<pre>';

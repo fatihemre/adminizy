@@ -58,4 +58,10 @@ class Resident
     {
         return $this->connection->prepare("DELETE FROM residents WHERE id=:resident_id")->execute(['resident_id'=>$resident_id]);
     }
+
+    public function total()
+    {
+        $sth = $this->connection->query("SELECT count(*) FROM residents WHERE deleted_at IS NULL AND flat_id IN (SELECT id FROM flats WHERE deleted_at IS NULL AND building_id IN (SELECT id FROM buildings WHERE deleted_at IS NULL))");
+        return $sth->fetchColumn();
+    }
 }

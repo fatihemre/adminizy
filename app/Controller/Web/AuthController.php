@@ -37,7 +37,7 @@ class AuthController extends BaseController
             flash('warning', 'Username/Password incorrect.');
             return redirectTo('/auth/login');
         }
-
+        $user->password = "*****";
         session('user', $user);
 
         return redirectTo('/admin');

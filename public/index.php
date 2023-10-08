@@ -27,7 +27,7 @@ try {
 
 } catch (\Throwable $throwable) {
 
-    debug($throwable);
+    dump($throwable);
     /**
         echo 'Message: ' . $throwable->getMessage();
         echo '<br>';

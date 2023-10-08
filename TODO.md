@@ -14,7 +14,7 @@
 - [ ] (localization) Birden fazla dil ekleyebilelim.
 - [ ] (theme-support) Sisteme TEMA desteği ekleyelim.
 - [ ] (new-modern-theme) YENİ TASARIM
-- [ ] (profile-page) Giriş yapan kullanıcı için bir profil sayfası ekleyelim. Bu profil sayfasında kullanıcılar kendi bilgilerini güncelleyebilsinler.
+- [x] ~~([profile-page](https://github.com/fatihemre/apteasy/tree/profile-page)) Giriş yapan kullanıcı için bir profil sayfası ekleyelim. Bu profil sayfasında kullanıcılar kendi bilgilerini güncelleyebilsinler.~~
 - [ ] (2fa-for-users) Kullanıcı 2FA ile giriş etkinleştirebilsin.
 - [ ] (email-notifications-when-adding-an-expense) Herhangi bir borç eklendiğinde daire sakini eposta alsın.
 - [ ] (email-notifications-when-payment-done) Herhangi bir borç ödendiğinde ya da ödeme bildirimi işleme alındığında daire sakini eposta alsın.

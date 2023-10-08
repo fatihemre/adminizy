@@ -5,6 +5,7 @@ use Apteasy\Controller\Web\AdminController;
 use Apteasy\Controller\Web\BuildingController;
 use Apteasy\Controller\Web\FlatController;
 use Apteasy\Controller\Web\ResidentController;
+use Apteasy\Controller\Web\ProfileController;
 use Apteasy\Middleware\AdminMiddleware;
 use Apteasy\Middleware\AuthMiddleware;
 
@@ -47,6 +48,11 @@ $webRouter->group('/admin', function($webRouter){
         $webRouter->post('/edit/:id', [ResidentController::class, 'update']);
 
         $webRouter->get('/remove/:id', [ResidentController::class, 'destroy']);
+    });
+
+    $webRouter->group('/profile', function($webRouter) {
+        $webRouter->get('', [ProfileController::class, 'edit']);
+        $webRouter->post('', [ProfileController::class, 'update']);
     });
 
 

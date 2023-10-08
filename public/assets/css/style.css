@@ -1,6 +1,9 @@
 *{
     font-family: 'Roboto', sans-serif;
 }
+body{
+    background: #262626
+}
 .container{
     display:flex;
     justify-content: center;
@@ -15,6 +18,7 @@
     text-align: center;
 }
 .page-header{
+    color: #e5e5e5;
     font-size:32px;
     font-weight: normal;
 }
@@ -24,7 +28,7 @@
 .sidebar{
     width:20%;
     margin-right:.5rem;
-    background-color:rgba(243,243,243, 1);
+    background-color:rgba(230,230,230, 1);
     border:1px solid transparent;
     border-radius: 4px;
     padding: 0 1rem;
@@ -34,15 +38,20 @@
 }
 .page-content{
     width:80%;
-    background:white;
+    background-color:rgba(230,230,230, 1);
+    border:1px solid transparent;
+    border-radius: 4px;
 }
 .page-content.full{
     width:100%;
 }
 #content{
+    /*
     background-color:rgba(243,243,243, 1);
     border:1px solid transparent;
     border-radius: 4px;
+
+     */
     padding:1rem;
 }
 .form-container{

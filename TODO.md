@@ -1,4 +1,10 @@
-- [x] ~~([#stats-on-dashboard](https://github.com/fatihemre/apteasy/tree/stats-on-dashboard)) Anasayfada toplam apartman, toplam daire, toplam yaşayan kişi ve toplam açık bakiye bilgileri kutu şeklinde görünür olsun.~~
+### BİR SONRAKİ YAYINDA YAPILACAKLAR
+- [ ] (localization) Birden fazla dil ekleyebilelim.
+- [ ] (theme-support) Sisteme TEMA desteği ekleyelim.
+- [ ] (new-modern-theme) YENİ TASARIM (w/ Tailwind CSS)
+- [ ] (2fa-for-users) Kullanıcı 2FA ile giriş etkinleştirebilsin.
+
+### TODOLIST
 - [ ] (automation-for-maintenance-fee) Otomatik olarak tüm apartmanlara aidat ekleyen bir betik olsun. Bu betik belirlediğimiz tarihte çalışıp, o aynı aidatını tüm dairelere eklesin.
 - [ ] (add-maintenance-fee-column-for-buildings) Her apartmanın aidat bilgisi farklı olacağından, apartman eklerken bu apartmanın aidat miktarını da yazabilelim.
 - [ ] (add-transaction) Bir apartmanın daireler listesinde "Transaction Ekle" butonu olsun. Ve aidat elden alınmışsa transaction manuel eklenebilsin.
@@ -11,11 +17,10 @@
 - [ ] (payment-notification-from-residents) Transaction listesinde "Ödeme Bildirimi Yap" butonu yer alsın. Kullanıcı banka havalesi ile ödemiş ise, bu yöntemi kullansın.
 - [ ] (payment-notification-for-admin-with-ajax) Daire sakini "Ödeme Bildirimi" gönderdiğinde, ajax request yardımı ile Admin ekranında notification çıksın.
 - [ ] (payment-notification-for-admin-with-socket) Daire sakini "Ödeme Bildirimi" gönderdiğinde, socket.io yardımı ile Admin ekranında notification çıksın.
-- [ ] (localization) Birden fazla dil ekleyebilelim.
-- [ ] (theme-support) Sisteme TEMA desteği ekleyelim.
-- [ ] (new-modern-theme) YENİ TASARIM
-- [x] ~~([profile-page](https://github.com/fatihemre/apteasy/tree/profile-page)) Giriş yapan kullanıcı için bir profil sayfası ekleyelim. Bu profil sayfasında kullanıcılar kendi bilgilerini güncelleyebilsinler.~~
-- [ ] (2fa-for-users) Kullanıcı 2FA ile giriş etkinleştirebilsin.
 - [ ] (email-notifications-when-adding-an-expense) Herhangi bir borç eklendiğinde daire sakini eposta alsın.
 - [ ] (email-notifications-when-payment-done) Herhangi bir borç ödendiğinde ya da ödeme bildirimi işleme alındığında daire sakini eposta alsın.
 - [ ] (email-notifications-for-admins) Admin tüm bu epostaların birer kopyasını alsın.
+
+### TAMAMLANANLAR
+- [x] ~~([#stats-on-dashboard](https://github.com/fatihemre/apteasy/tree/stats-on-dashboard)) Anasayfada toplam apartman, toplam daire, toplam yaşayan kişi ve toplam açık bakiye bilgileri kutu şeklinde görünür olsun.~~
+- [x] ~~([profile-page](https://github.com/fatihemre/apteasy/tree/profile-page)) Giriş yapan kullanıcı için bir profil sayfası ekleyelim. Bu profil sayfasında kullanıcılar kendi bilgilerini güncelleyebilsinler.~~

@@ -34,7 +34,7 @@ class User
             'phone' => $entity->phone,
             'user_id' => $entity->id
         ];
-        
+
         if(!empty($entity->password)) {
             $password_string = ', password=:password';
             $bindings['password'] = password()->hash($entity->password);

@@ -8,6 +8,7 @@ class UserEntity
     public $display_name;
     public $email;
     public $password;
+    public $phone;
     public $created_at;
     public $updated_at;
     public $deleted_at;

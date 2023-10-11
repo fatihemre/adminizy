@@ -33,6 +33,7 @@ class User
             'email' => $entity->email,
             'phone' => $entity->phone,
             'language' => $entity->language,
+            'theme' => $entity->theme,
             'user_id' => $entity->id
         ];
 
@@ -46,6 +47,7 @@ class User
                  email=:email, 
                  phone=:phone, 
                  language=:language,
+                 theme=:theme,
                  updated_at=NOW() {$password_string} WHERE id=:user_id");
         return $sth->execute($bindings);
     }

@@ -23,6 +23,13 @@
                     <option value="en_US" {{ user.language == 'en_US' ? 'selected': '' }}>English</option>
                 </select>
             </div>
+            <div class="input-row">
+                <label for="theme">Sistem Teması:</label>
+                <select name="theme" id="theme">
+                    <option value="default" {{ user.theme == 'default' ? 'selected': '' }}>Default Tema</option>
+                    <option value="modern" {{ user.theme == 'modern' ? 'selected': '' }}>Modern Tema</option>
+                </select>
+            </div>
             <hr>
 
             <div class="alert alert-warning">

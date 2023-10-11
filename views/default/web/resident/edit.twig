@@ -1,0 +1,27 @@
+{% extends theme ~ '/base.twig' %}
+{% block content %}
+
+    <div class="form-container">
+        <h3 class="title">Daire Sakini Bilgilerini Güncelle</h3>
+        <form action="/admin/residents/edit/{{ resident.id }}" method="post">
+            <div class="input-row">
+                <label for="display_name">Adı Soyadı:</label>
+                <input type="text" id="display_name" name="display_name" value="{{ resident.display_name }}">
+            </div>
+            <div class="input-row">
+                <label for="phone">Telefon Numarası:</label>
+                <input type="text" id="phone" name="phone" value="{{ resident.phone }}">
+            </div>
+            <div class="input-row">
+                <label for="email">Eposta Adresi:</label>
+                <input type="email" id="email" name="email" value="{{ resident.email }}">
+            </div>
+
+            <div class="input-row">
+                <label></label>
+                <button type="submit">Güncelle</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -37,7 +37,10 @@ class BaseController extends Controller
         $args['siteName'] = config('SITE_NAME');
         $args['breadcrumbs'] = $this->breadcrumbs;
 
-        $fullPath = $this->className() . DIRECTORY_SEPARATOR . $path . '.twig';
+        $args['theme'] = $args['user'] ? $args['user']->theme : 'default';
+
+        $fullPath = $args['theme']. '/'.$this->className() . DIRECTORY_SEPARATOR . $path . '.twig';
+
         return $this->view->render($fullPath, $args);
     }
 

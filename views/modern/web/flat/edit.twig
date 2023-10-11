@@ -1,0 +1,22 @@
+{% extends theme ~ '/base.twig' %}
+{% block content %}
+
+    <div class="form-container">
+        <h3 class="title">Daireyi Düzenle</h3>
+        <form action="/admin/flats/edit/{{ flat.id }}" method="post">
+            <div class="input-row">
+                <label for="display_name">Daire Numarası:</label>
+                <input type="text" id="display_name" name="display_name" value="{{ flat.display_name }}">
+            </div>
+            <div class="input-row">
+                <label for="amount">Başlangıç Bakiyesi:</label>
+                <input type="number" step=".01" id="amount" name="amount" value="{{ flat.amount }}">
+            </div>
+            <div class="input-row">
+                <label></label>
+                <button type="submit">Güncelle</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

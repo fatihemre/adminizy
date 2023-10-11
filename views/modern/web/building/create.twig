@@ -1,0 +1,22 @@
+{% extends theme ~ '/base.twig' %}
+{% block content %}
+
+    <div class="form-container">
+        <h3 class="title">Apartman Ekle</h3>
+        <form action="/admin/buildings/create" method="post">
+            <div class="input-row">
+                <label for="display_name">Apartman Adı:</label>
+                <input type="display_name" id="display_name" name="display_name" value="">
+            </div>
+            <div class="input-row">
+                <label for="address">Apartman Adresi:</label>
+                <input type="address" id="address" name="address" value="">
+            </div>
+            <div class="input-row">
+                <label></label>
+                <button type="submit">Ekle</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

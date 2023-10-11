@@ -24,6 +24,7 @@ class ProfileController extends BaseController
         $entity->email = $request->get('email');
         $entity->phone = $request->get('phone');
         $entity->language = $request->get('language');
+        $entity->theme = $request->get('theme');
         $entity->password = $request->get('password');
 
         if($entity->display_name === '' || $entity->email === '' || $entity->phone === '') {

@@ -39,6 +39,7 @@ class AuthController extends BaseController
         }
         $user->password = "*****";
         session('user', $user);
+        cookie('lang', $user->language);
 
         return redirectTo('/admin');
 

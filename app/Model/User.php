@@ -32,6 +32,7 @@ class User
             'display_name' => $entity->display_name,
             'email' => $entity->email,
             'phone' => $entity->phone,
+            'language' => $entity->language,
             'user_id' => $entity->id
         ];
 
@@ -40,7 +41,12 @@ class User
             $bindings['password'] = password()->hash($entity->password);
         }
 
-        $sth = $this->connection->prepare("UPDATE users SET display_name=:display_name, email=:email, phone=:phone, updated_at=NOW() {$password_string} WHERE id=:user_id");
+        $sth = $this->connection->prepare("UPDATE users SET 
+                 display_name=:display_name, 
+                 email=:email, 
+                 phone=:phone, 
+                 language=:language,
+                 updated_at=NOW() {$password_string} WHERE id=:user_id");
         return $sth->execute($bindings);
     }
 }

@@ -5,7 +5,10 @@ use Money\Currency;
 use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
 use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
@@ -17,8 +20,15 @@ $session = new Session();
 $session->start();
 
 if(!function_exists('config')) {
-    function config($variable) {
-        return $_ENV[$variable] ?? null;
+    function config($variable, $default=null) {
+        return $_ENV[$variable] ?? $default;
+    }
+}
+
+if(!function_exists('__')) {
+    function __($variable) {
+        global $_lang;
+        return $_lang[$variable] ?? $variable;
     }
 }
 
@@ -54,6 +64,20 @@ if(!function_exists('session')) {
     }
 }
 
+if(!function_exists('cookie')) {
+    function cookie($variable, $set=false, $expire_date=0) {
+        if(!$set) {
+            return $_COOKIE[$variable]??null;
+        }
+
+        $cookie = Cookie::create($variable)
+            ->withValue($set)
+            ->withExpires($expire_date);
+        $response = new Response();
+        $response->headers->setCookie($cookie);
+        $response->send();
+    }
+}
 
 if(!function_exists('redirectTo')) {
     function redirectTo($destination) {

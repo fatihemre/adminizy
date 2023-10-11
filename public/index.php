@@ -8,6 +8,16 @@ require_once './vendor/autoload.php';
 
 try {
 
+    $lang = cookie('lang');
+
+    if(is_null($lang)) {
+        cookie('lang', config('LOCALE'));
+    }
+
+    if(file_exists(APP_PATH . '/lang/' . $lang . '/lang.php')) {
+        require_once APP_PATH . '/lang/' . $lang . '/lang.php';
+    }
+
     $router = new Apteasy\Library\Router([
         'paths' => [
             'controllers' => APP_PATH . '/app/Controller',

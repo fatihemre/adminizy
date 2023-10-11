@@ -1,20 +1,26 @@
 {% extends 'base.twig' %}
 {% block content %}
 
+    <div class="language-switcher">
+        <a href="/set-locale/tr"><img src="/assets/images/flags/tr.svg" alt="" width="32"></a>
+        <a href="/set-locale/en"><img src="/assets/images/flags/en.svg" alt="" width="32"></a>
+    </div>
+
     <div class="form-container login">
-        <h3 class="title">Oturum Aç</h3>
+
+        <h3 class="title">{{ __('Sign in') }}</h3>
         <form action="/auth/login" method="post">
             <div class="input-row">
-                <label for="email">Eposta Adresi:</label>
+                <label for="email">{{ __('Email Address') }}:</label>
                 <input type="email" id="email" name="email" value="">
             </div>
             <div class="input-row">
-                <label for="password">Parola:</label>
+                <label for="password">{{ __('Password') }}:</label>
                 <input type="password" id="password" name="password" value="">
             </div>
             <div class="input-row">
                 <label></label>
-                <button type="submit">Oturum Aç</button>
+                <button type="submit">{{ __('Sign in') }}</button>
             </div>
         </form>
     </div>

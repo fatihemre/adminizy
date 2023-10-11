@@ -1,5 +1,6 @@
 <?php
 
+use Apteasy\Controller\BaseController;
 use Apteasy\Controller\Web\AuthController;
 use Apteasy\Controller\Web\AdminController;
 use Apteasy\Controller\Web\BuildingController;
@@ -8,12 +9,16 @@ use Apteasy\Controller\Web\ResidentController;
 use Apteasy\Controller\Web\ProfileController;
 use Apteasy\Middleware\AdminMiddleware;
 use Apteasy\Middleware\AuthMiddleware;
+use Symfony\Component\HttpFoundation\Request;
 
 $webRouter = &$router;
 
-$webRouter->get('/', function(\Symfony\Component\HttpFoundation\Request $request) {
+$webRouter->get('/', function(Request $request) {
     return redirectTo('/auth/login');
 }, ['before'=> AdminMiddleware::class]);
+
+$webRouter->get('/set-locale/:string', [BaseController::class, 'setLocale']);
+
 
 $webRouter->group('/admin', function($webRouter){
     $webRouter->get('', [AdminController::class, 'index']);

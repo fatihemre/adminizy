@@ -23,6 +23,7 @@ class ProfileController extends BaseController
         $entity->display_name = $request->get('display_name');
         $entity->email = $request->get('email');
         $entity->phone = $request->get('phone');
+        $entity->language = $request->get('language');
         $entity->password = $request->get('password');
 
         if($entity->display_name === '' || $entity->email === '' || $entity->phone === '') {
@@ -55,6 +56,7 @@ class ProfileController extends BaseController
         if($update) {
             $entity->password = '*****';
             session('user', $entity);
+            cookie('lang', $entity->language);
             flash('success', 'Bilgileriniz başarıyla güncellendi.');
             return redirectTo('/admin/profile');
         }

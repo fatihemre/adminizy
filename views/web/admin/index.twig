@@ -2,19 +2,19 @@
 {% block content %}
     <div class="stats">
         <div class="stat-box">
-            <h4>Toplam Apartman</h4>
+            <h4>{{ __('Total Buildings') }}</h4>
             <div>{{ stats['buildings'] }}</div>
         </div>
         <div class="stat-box">
-            <h4>Toplam Daire</h4>
+            <h4>{{ __('Total Flats') }}</h4>
             <div>{{ stats['flats'] }}</div>
         </div>
         <div class="stat-box">
-            <h4>Toplam Daire Sakini</h4>
+            <h4>{{ __('Total Residents') }}</h4>
             <div>{{ stats['residents'] }}</div>
         </div>
         <div class="stat-box">
-            <h4>Toplam Açık Bakiye</h4>
+            <h4>{{ __('Total Amount') }}</h4>
             <div>{{ stats['amount'] }}</div>
         </div>
     </div>

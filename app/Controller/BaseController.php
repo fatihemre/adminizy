@@ -4,6 +4,8 @@ namespace Apteasy\Controller;
 
 use Apteasy\Library\Breadcrumbs;
 use Buki\Router\Http\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -23,6 +25,7 @@ class BaseController extends Controller
             'debug' => true
         ]);
         $this->view->addFunction(new TwigFunction('formatMoney', 'format_money'));
+        $this->view->addFunction(new TwigFunction('__', '__'));
 
         $this->breadcrumbs = new Breadcrumbs();
     }
@@ -36,6 +39,24 @@ class BaseController extends Controller
 
         $fullPath = $this->className() . DIRECTORY_SEPARATOR . $path . '.twig';
         return $this->view->render($fullPath, $args);
+    }
+
+    public function setLocale(Request $request, $language): RedirectResponse
+    {
+
+        $activeLanguges = explode(',', config('ACTIVE_LANGS', ''));
+
+        foreach ($activeLanguges as $activeLanguge) {
+            $part = explode('_', $activeLanguge);
+            if($part[0] === $language) {
+                cookie('lang', $activeLanguge);
+                break;
+            }
+        }
+
+        // TODO: Kullanıcı hangi sayfadayken tıkladıysa, o sayfaya yönlendir.
+        return redirectTo('/');
+
     }
 
     public function className(): string

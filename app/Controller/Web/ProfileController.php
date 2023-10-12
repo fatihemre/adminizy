@@ -28,19 +28,19 @@ class ProfileController extends BaseController
         $entity->password = $request->get('password');
 
         if($entity->display_name === '' || $entity->email === '' || $entity->phone === '') {
-            flash('danger', 'Lütfen formu tam olarak doldurun.');
+            flash('danger', __('Please fill all inputs'));
             return redirectTo('/admin/profile');
         }
 
         if(filter_var($entity->email, FILTER_VALIDATE_EMAIL) === false) {
-            flash('danger', 'Lütfen doğru bir eposta adresi girin');
+            flash('danger', __('Please enter a valid email address'));
             return redirectTo('/admin/profile');
         }
 
         $user = new User();
 
         if($user->updateExists($entity->email, session('user')->id)) {
-            flash('danger', 'Bu eposta adresi zataen kullanımda.');
+            flash('danger', __('This email address is already in use'));
             return redirectTo('/admin/profile');
         }
 
@@ -48,7 +48,7 @@ class ProfileController extends BaseController
             ($entity->password !== '' && $request->get('password_confirmation') !== '') &&
             $entity->password !== $request->get('password_confirmation')
         ) {
-            flash('danger', 'Parolanızı güncellemek istediniz, ancak girdiğiniz parolalar birbiriyle uyuşmuyor. Lütfen kontrol edin.');
+            flash('danger', __('The passwords you entered do not match each other, please check and re-enter.'));
             return redirectTo('/admin/profile');
         }
 
@@ -58,11 +58,11 @@ class ProfileController extends BaseController
             $entity->password = '*****';
             session('user', $entity);
             cookie('lang', $entity->language);
-            flash('success', 'Bilgileriniz başarıyla güncellendi.');
+            flash('success', __('Your profile has been updated successfully'));
             return redirectTo('/admin/profile');
         }
 
-        flash('danger', 'Bilgileriniz güncellenemedi.');
+        flash('danger', __('Your profile could not be updated'));
         return redirectTo('/admin/profile');
 
     }

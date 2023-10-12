@@ -12,13 +12,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
-        <span>{{ building.count }} daire</span>
+        <span>{{ building.count }} {{ __('building(s)') }}</span>
     </div>
     <div class="address">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
         </svg>
-        <span>{{ residents }} apartman sakini</span>
+        <span>{{ residents }} {{ __('resident(s)') }}</span>
     </div>
 
     <div class="buttons">
@@ -26,17 +26,17 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
-            Yeni Daire Ekle
+            {{ __('Create Flat') }}
         </a>
     </div>
     <table class="content-table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Daire No</th>
-            <th>Yaşayan Kişi</th>
-            <th>Aidat Bakiyesi</th>
-            <th>İşlem</th>
+            <th>{{ __('ID') }}</th>
+            <th>{{ __('Flat No') }}</th>
+            <th>{{ __('Residents') }}</th>
+            <th>{{ __('Amount') }}</th>
+            <th>{{ __('Action') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
                 <td><span style="color:{{ flat.amount > 0 ? 'red' : 'green' }}">{{ formatMoney(flat.amount) }}</span></td>
                 <td width="150">
                     <a href="/admin/flats/show/{{ flat.id }}" class="button only-icon"
-                       aria-label="Detaylar" data-microtip-position="top" role="tooltip"
+                       aria-label="{{ __('Show Details') }}" data-microtip-position="top" role="tooltip"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
@@ -56,8 +56,8 @@
                         </svg>
                     </a>
                     <a class="button only-icon" href="/admin/flats/edit/{{ flat.id }}"
-                       aria-label="Düzenle" data-microtip-position="top" role="tooltip"
-                       data-confirm="Düzenlemek istediğinize emin misiniz?"
+                       aria-label="{{ __('Edit') }}" data-microtip-position="top" role="tooltip"
+                       data-confirm="{{ __('Edit Message') }}"
                        data-confirm-type="edit"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -65,8 +65,8 @@
                         </svg>
                     </a>
                     <a class="button only-icon" href="/admin/flats/remove/{{ flat.id }}"
-                       aria-label="Sil" data-microtip-position="top" role="tooltip"
-                       data-confirm="Silmek istediğinize emin misiniz?"
+                       aria-label="{{ __('Remove') }}" data-microtip-position="top" role="tooltip"
+                       data-confirm="{{ __('Remove Message') }}"
                        data-confirm-type="remove"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -77,7 +77,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Kayıt bulunamadı.</td>
+                <td colspan="5">{{ __('No records found') }}</td>
             </tr>
         {% endfor %}
 

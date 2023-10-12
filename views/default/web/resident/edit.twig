@@ -2,24 +2,24 @@
 {% block content %}
 
     <div class="form-container">
-        <h3 class="title">Daire Sakini Bilgilerini Güncelle</h3>
+        <h3 class="title">{{ __('Update Resident') }}</h3>
         <form action="/admin/residents/edit/{{ resident.id }}" method="post">
             <div class="input-row">
-                <label for="display_name">Adı Soyadı:</label>
+                <label for="display_name">{{ __('Full Name') }}:</label>
                 <input type="text" id="display_name" name="display_name" value="{{ resident.display_name }}">
             </div>
             <div class="input-row">
-                <label for="phone">Telefon Numarası:</label>
+                <label for="phone">{{ __('Phone Number') }}:</label>
                 <input type="text" id="phone" name="phone" value="{{ resident.phone }}">
             </div>
             <div class="input-row">
-                <label for="email">Eposta Adresi:</label>
+                <label for="email">{{ __('Email Address') }}:</label>
                 <input type="email" id="email" name="email" value="{{ resident.email }}">
             </div>
 
             <div class="input-row">
                 <label></label>
-                <button type="submit">Güncelle</button>
+                <button type="submit">{{ __('Update') }}</button>
             </div>
         </form>
     </div>

@@ -20,7 +20,7 @@ class ResidentController extends BaseController
         $resident = $resident_id > 0 ? (new Resident())->fetch($resident_id) : false;
         $flat = (new Flat())->fetch($flat_id > 0 ? $flat_id : $resident->flat_id);
         $building = (new Building())->fetch($flat->building_id);
-        $this->breadcrumbs->add('Apartmanlar', '/admin/buildings');
+        $this->breadcrumbs->add(__('Buildings'), '/admin/buildings');
         $this->breadcrumbs->add($building->display_name, '/admin/buildings/show/' . $building->id);
         $this->breadcrumbs->add($flat->display_name, '/admin/flats/show/' . $flat->id);
 
@@ -42,23 +42,23 @@ class ResidentController extends BaseController
         $entity->email = $request->get('email');
 
         if($entity->display_name === '' || $entity->phone === '' || $entity->email === '') {
-            flash('danger', 'Lütfen formu tam olarak doldurun.');
+            flash('danger', __('Please fill all inputs'));
             return redirectTo('/admin/flats/show/' . $flat_id);
         }
 
         if(filter_var($entity->email, FILTER_VALIDATE_EMAIL) === false) {
-            flash('danger', 'Lütfen doğru bir eposta adresi girin.');
+            flash('danger', __('Please enter a valid email address'));
             return redirectTo('/admin/flats/show/' . $flat_id);
         }
 
         $insert = (new Resident())->insert($entity);
 
         if($insert) {
-            flash('success', 'Daire Sakini Eklendi.');
+            flash('success', __('The resident has been added'));
             return redirectTo('/admin/flats/show/' . $flat_id);
         }
 
-        flash('danger', 'Daire Sakini Eklenemedi.');
+        flash('danger', __('The resident could not be added'));
         return redirectTo('/admin/flats/show/' . $flat_id);
     }
 
@@ -77,23 +77,23 @@ class ResidentController extends BaseController
         $entity->email = $request->get('email');
 
         if($entity->display_name === '' || $entity->phone === '' || $entity->email === '') {
-            flash('danger', 'Lütfen formu tam olarak doldurun.');
+            flash('danger', __('Please fill all inputs'));
             return redirectTo('/admin/residents/edit/' . $resident_id);
         }
 
         if(filter_var($entity->email, FILTER_VALIDATE_EMAIL) === false) {
-            flash('danger', 'Lütfen doğru bir eposta adresi girin.');
+            flash('danger', __('Please enter a valid email address'));
             return redirectTo('/admin/residents/edit/' . $resident_id);
         }
 
         $update = (new Resident())->update($entity);
 
         if($update) {
-            flash('success', 'Daire Sakini Güncellendi.');
+            flash('success', __('The resident has been updated'));
             return redirectTo('/admin/residents/edit/' . $resident_id);
         }
 
-        flash('danger', 'Daire Sakini Eklenemedi.');
+        flash('danger', 'The resident could not be updated');
         return redirectTo('/admin/residents/edit/' . $resident_id);
     }
 
@@ -102,7 +102,7 @@ class ResidentController extends BaseController
         $resident = new Resident();
         $getResident = $resident->fetch($resident_id);
         $remove = $resident->remove($resident_id);
-        flash($remove ? 'success' : 'danger', $remove ? 'Daire sakini silindi' : 'Daire sakini silinemedi');
+        flash($remove ? 'success' : 'danger', $remove ? __('The resident has been removed') : __('The resident could not be removed'));
         return redirectTo('/admin/flats/show/' . $getResident->flat_id);
 
     }

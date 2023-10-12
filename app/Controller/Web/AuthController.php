@@ -29,12 +29,12 @@ class AuthController extends BaseController
         $user = (new User())->fetch($email);
 
         if(!$user) {
-            flash('warning', 'Username/Password incorrect.');
+            flash('warning', __('Username/Password incorrect.'));
             return redirectTo('/auth/login');
         }
 
         if(!password()->verify($user->password, $password)) {
-            flash('warning', 'Username/Password incorrect.');
+            flash('warning', __('Username/Password incorrect.'));
             return redirectTo('/auth/login');
         }
         $user->password = "*****";

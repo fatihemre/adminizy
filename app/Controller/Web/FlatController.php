@@ -16,7 +16,7 @@ class FlatController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->breadcrumbs->add('Apartmanlar', '/admin/buildings');
+        $this->breadcrumbs->add(__('Buildings'), '/admin/buildings');
     }
 
     public function show($id): string
@@ -47,18 +47,18 @@ class FlatController extends BaseController
         $entity->amount = $request->get('amount', 0) !== '' ? $request->get('amount', 0) : 0;
 
         if($entity->display_name === '') {
-            flash('danger', 'Lütfen formu tam olarak doldurun.');
+            flash('danger', __('Please fill all inputs'));
             return redirectTo('/admin/buildings/create');
         }
 
         $insert = (new Flat())->insert($entity);
 
         if($insert) {
-            flash('success', 'Daire Eklendi');
+            flash('success', __('The flat has been created'));
             return redirectTo('/admin/buildings/show/' . $building_id);
         }
 
-        flash('danger', 'Daire Eklenemedi.');
+        flash('danger', 'The flat could not be created');
         return redirectTo('/admin/flats/create/' . $building_id);
     }
 
@@ -79,13 +79,13 @@ class FlatController extends BaseController
         $entity->amount = $request->get('amount', 0) !== '' ? $request->get('amount', 0) : 0;
 
         if($entity->display_name === '') {
-            flash('danger', 'Lütfen formu tam olarak doldurun.');
+            flash('danger', __('Please fill all inputs'));
             return redirectTo('/admin/flats/edit/' . $flat_id);
         }
 
         $update = (new Flat())->update($entity);
 
-        flash($update ? 'success' : 'danger', $update ? 'Daire Güncellendi' : 'Daire Güncellenemedi');
+        flash($update ? 'success' : 'danger', $update ? __('The flat has been updated') : __('The flat could not be updated'));
         return redirectTo('/admin/flats/edit/' . $flat_id );
 
     }
@@ -95,7 +95,7 @@ class FlatController extends BaseController
         $flat = new Flat();
         $getFlat = $flat->fetch($flat_id);
         $remove = $flat->remove($flat_id);
-        flash($remove ? 'success' : 'danger', $remove ? 'Daire Silindi' : 'Daire Silinemedi');
+        flash($remove ? 'success' : 'danger', $remove ? __('The flat has been removed') : __('The flat could not be removed'));
         return redirectTo('/admin/buildings/show/' . $getFlat->building_id);
     }
 

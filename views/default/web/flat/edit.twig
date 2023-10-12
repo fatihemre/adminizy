@@ -2,19 +2,19 @@
 {% block content %}
 
     <div class="form-container">
-        <h3 class="title">Daireyi Düzenle</h3>
+        <h3 class="title">{{ __('Edit Flat') }}</h3>
         <form action="/admin/flats/edit/{{ flat.id }}" method="post">
             <div class="input-row">
-                <label for="display_name">Daire Numarası:</label>
+                <label for="display_name">{{ __('Flat No') }}:</label>
                 <input type="text" id="display_name" name="display_name" value="{{ flat.display_name }}">
             </div>
             <div class="input-row">
-                <label for="amount">Başlangıç Bakiyesi:</label>
+                <label for="amount">{{ __('Start Amount') }}:</label>
                 <input type="number" step=".01" id="amount" name="amount" value="{{ flat.amount }}">
             </div>
             <div class="input-row">
                 <label></label>
-                <button type="submit">Güncelle</button>
+                <button type="submit">{{ __('Update') }}</button>
             </div>
         </form>
     </div>

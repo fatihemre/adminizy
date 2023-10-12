@@ -19,6 +19,10 @@
 - [ ] (email-notifications-when-payment-done) Herhangi bir borç ödendiğinde ya da ödeme bildirimi işleme alındığında daire sakini eposta alsın.
 - [ ] (email-notifications-for-admins) Admin tüm bu epostaların birer kopyasını alsın.
 
+### SİZDEN GELENLER
+Eğer bir talebiniz varsa lütfen katkıda bulunarak buraya ekleme yapın ve pr gönderin. Canlı yayınlarda sizin istediklerinizi de projemize kodlayarak ekleyelim.
+- [ ] ([fatihemre](https://github.com/fatihemre)) - Örnek talep satırı.
+
 ### TAMAMLANANLAR
 - [x] ~~([#stats-on-dashboard](https://github.com/fatihemre/apteasy/tree/stats-on-dashboard)) Anasayfada toplam apartman, toplam daire, toplam yaşayan kişi ve toplam açık bakiye bilgileri kutu şeklinde görünür olsun.~~
 - [x] ~~([profile-page](https://github.com/fatihemre/apteasy/tree/profile-page)) Giriş yapan kullanıcı için bir profil sayfası ekleyelim. Bu profil sayfasında kullanıcılar kendi bilgilerini güncelleyebilsinler.~~

@@ -15,7 +15,7 @@ class BuildingController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->breadcrumbs->add('Apartmanlar', '/admin/buildings');
+        $this->breadcrumbs->add(__('Buildings'), '/admin/buildings');
     }
 
     public function index(): string
@@ -52,18 +52,18 @@ class BuildingController extends BaseController
         $entity->address = $request->get('address');
 
         if($entity->display_name === '' || $entity->address === '') {
-            flash('danger', 'Lütfen formu tam olarak doldurun.');
+            flash('danger', __('Please fill all inputs'));
             return redirectTo('/admin/buildings/create');
         }
 
         $insert = (new Building())->insert($entity);
 
         if($insert) {
-            flash('success', 'Apartman Eklendi');
+            flash('success', __('Building has been created'));
             return redirectTo('/admin/buildings');
         }
 
-        flash('danger', 'Apartman Eklenemedi.');
+        flash('danger', __('Building could not be created'));
         return redirectTo('/admin/buildings/create');
     }
 
@@ -85,14 +85,14 @@ class BuildingController extends BaseController
 
         $update = (new Building())->update($entity);
 
-        flash($update ? 'success' : 'danger', $update ? 'Apartman Güncellendi' : 'Apartman Güncellenemedi');
+        flash($update ? 'success' : 'danger', $update ? __('Building has been updated') : __('Building could not be updated'));
         return redirectTo('/admin/buildings');
     }
 
     public function destroy($id): RedirectResponse
     {
         $remove = (new Building())->remove($id);
-        flash($remove ? 'success' : 'danger', $remove ? 'Apartman Silindi' : 'Apartman Silinemedi');
+        flash($remove ? 'success' : 'danger', $remove ? __('Building has been removed') : __('Building could not be removed'));
         return redirectTo('/admin/buildings');
     }
 

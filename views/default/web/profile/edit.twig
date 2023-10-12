@@ -2,29 +2,29 @@
 {% block content %}
 
     <div class="form-container">
-        <h3 class="title">Kullanıcı Bilgilerini Güncelle</h3>
+        <h3 class="title">{{ __('Update User Information') }}</h3>
         <form action="/admin/profile" method="post">
             <div class="input-row">
-                <label for="display_name">Adı Soyadı:</label>
+                <label for="display_name">{{ __('Full Name') }}:</label>
                 <input type="text" id="display_name" name="display_name" value="{{ user.display_name }}">
             </div>
             <div class="input-row">
-                <label for="phone">Telefon Numarası:</label>
+                <label for="phone">{{ __('Phone Number') }}:</label>
                 <input type="text" id="phone" name="phone" value="{{ user.phone }}">
             </div>
             <div class="input-row">
-                <label for="email">Eposta Adresi:</label>
+                <label for="email">{{ __('Email Address') }}:</label>
                 <input type="email" id="email" name="email" value="{{ user.email }}">
             </div>
             <div class="input-row">
-                <label for="language">Sistem Dili:</label>
+                <label for="language">{{ __('Selected Language') }}:</label>
                 <select name="language" id="language">
                     <option value="tr_TR" {{ user.language == 'tr_TR' ? 'selected': '' }}>Türkçe</option>
                     <option value="en_US" {{ user.language == 'en_US' ? 'selected': '' }}>English</option>
                 </select>
             </div>
             <div class="input-row">
-                <label for="theme">Sistem Teması:</label>
+                <label for="theme">{{ __('Selected Theme') }}:</label>
                 <select name="theme" id="theme">
                     <option value="default" {{ user.theme == 'default' ? 'selected': '' }}>Default Tema</option>
                     <option value="modern" {{ user.theme == 'modern' ? 'selected': '' }}>Modern Tema</option>
@@ -33,22 +33,22 @@
             <hr>
 
             <div class="alert alert-warning">
-                Parolanızı değiştirmeyecekseniz aşağıdaki alanı boş bırakın.
+                {{ __('If you are not going to change your password, leave it blank') }}
             </div>
 
             <div class="input-row">
-                <label for="password">Parola:</label>
+                <label for="password">{{ __('Password') }}:</label>
                 <input type="password" id="password" name="password" value="">
             </div>
 
             <div class="input-row">
-                <label for="password_confirmation">Parola (Tekrar):</label>
+                <label for="password_confirmation">{{ __('Confirm Password') }}:</label>
                 <input type="password" id="password_confirmation" name="password_confirmation" value="">
             </div>
 
             <div class="input-row">
                 <label></label>
-                <button type="submit">Güncelle</button>
+                <button type="submit">{{ __('Update') }}</button>
             </div>
         </form>
     </div>

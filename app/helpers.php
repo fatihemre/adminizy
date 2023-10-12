@@ -26,9 +26,9 @@ if(!function_exists('config')) {
 }
 
 if(!function_exists('__')) {
-    function __($variable) {
+    function __($variable, ...$values) {
         global $_lang;
-        return $_lang[$variable] ?? $variable;
+        return sprintf(($_lang[$variable] ?? $variable), ...$values);
     }
 }
 

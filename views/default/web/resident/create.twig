@@ -2,24 +2,24 @@
 {% block content %}
 
     <div class="form-container">
-        <h3 class="title">{{ flat.display_name }} No'lu Daireye Kişi Ekle</h3>
+        <h3 class="title">{{ __('Add resident in', flat.display_name)  }}</h3>
         <form action="/admin/residents/create/{{ flat.id }}" method="post">
             <div class="input-row">
-                <label for="display_name">Adı Soyadı:</label>
+                <label for="display_name">{{ __('Full Name') }}:</label>
                 <input type="text" id="display_name" name="display_name" value="">
             </div>
             <div class="input-row">
-                <label for="phone">Telefon Numarası:</label>
+                <label for="phone">{{ __('Phone Number') }}:</label>
                 <input type="text" id="phone" name="phone" value="">
             </div>
             <div class="input-row">
-                <label for="email">Eposta Adresi:</label>
+                <label for="email">{{ __('Email Address') }}:</label>
                 <input type="email" id="email" name="email" value="">
             </div>
 
             <div class="input-row">
                 <label></label>
-                <button type="submit">Ekle</button>
+                <button type="submit">{{ __('Add') }}</button>
             </div>
         </form>
     </div>

@@ -2,19 +2,19 @@
 {% block content %}
 
     <div class="form-container">
-        <h3 class="title">{{ building.display_name }} içerisine Daire Ekle</h3>
+        <h3 class="title">{{ __('Add flat in', building.display_name) }} </h3>
         <form action="/admin/flats/create/{{ building.id }}" method="post">
             <div class="input-row">
-                <label for="display_name">Daire Numarası:</label>
+                <label for="display_name">{{ __('Flat No') }}:</label>
                 <input type="text" id="display_name" name="display_name" value="">
             </div>
             <div class="input-row">
-                <label for="amount">Başlangıç Bakiyesi:</label>
+                <label for="amount">{{ __('Start Amount') }}:</label>
                 <input type="number" step=".01" id="amount" name="amount" value="0">
             </div>
             <div class="input-row">
                 <label></label>
-                <button type="submit">Ekle</button>
+                <button type="submit">{{ __('Create') }}</button>
             </div>
         </form>
     </div>

@@ -1,17 +1,17 @@
 {% extends theme ~ '/base.twig' %}
 {% block content %}
-    <h1>Daire No: {{ flat.display_name }}</h1>
+    <h1>{{ __('Flat No') }}: {{ flat.display_name }}</h1>
     <div class="address alert {{ flat.amount > 0 ? 'alert-danger' : 'alert-success' }}">
         {% if flat.amount > 0 %}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
             </svg>
-            <span>Bu dairenin toplam {{ formatMoney(flat.amount) }} borcu bulunmaktadır.</span>
+            <span>{{ __('This flat has a total debt of', formatMoney(flat.amount)) }}</span>
         {% else %}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
             </svg>
-            <span>Bu dairenin aidat borcu bulunmamaktadır.</span>
+            <span>{{ __('This flat has no debt') }}</span>
         {% endif %}
     </div>
 
@@ -20,17 +20,17 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
             </svg>
-            Daire Sakini Ekle
+            {{ __('Add Resident') }}
         </a>
     </div>
     <table class="content-table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Ad Soyad</th>
-            <th>Telefon Numarası</th>
-            <th>Eposta Adresi</th>
-            <th>İşlem</th>
+            <th>{{ __('ID') }}</th>
+            <th>{{ __('Full Name') }}</th>
+            <th>{{ __('Phone Number') }}</th>
+            <th>{{ __('Email Address') }}</th>
+            <th>{{ __('Action') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -42,8 +42,8 @@
                 <td>{{ resident.email }}</td>
                 <td width="150">
                     <a class="button only-icon" href="/admin/residents/edit/{{ resident.id }}"
-                       aria-label="Düzenle" data-microtip-position="top" role="tooltip"
-                       data-confirm="Düzenlemek istediğinize emin misiniz?"
+                       aria-label="{{ __('Edit') }}" data-microtip-position="top" role="tooltip"
+                       data-confirm="{{ __('Edit Message') }}"
                        data-confirm-type="edit"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -51,8 +51,8 @@
                         </svg>
                     </a>
                     <a class="button only-icon" href="/admin/residents/remove/{{ resident.id }}"
-                       aria-label="Sil" data-microtip-position="top" role="tooltip"
-                       data-confirm="Silmek istediğinize emin misiniz?"
+                       aria-label="-{{ __('Remove') }}" data-microtip-position="top" role="tooltip"
+                       data-confirm="{{ __('Remove Message') }}"
                        data-confirm-type="remove"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -63,7 +63,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Kayıt bulunamadı.</td>
+                <td colspan="5">{{ __('No records found') }}</td>
             </tr>
         {% endfor %}
 

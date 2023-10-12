@@ -1,6 +1,4 @@
 ### BİR SONRAKİ YAYINDA YAPILACAKLAR
-- [ ] (localization) Birden fazla dil ekleyebilelim.
-- [ ] (theme-support) Sisteme TEMA desteği ekleyelim.
 - [ ] (new-modern-theme) YENİ TASARIM (w/ Tailwind CSS)
 - [ ] (2fa-for-users) Kullanıcı 2FA ile giriş etkinleştirebilsin.
 
@@ -24,3 +22,5 @@
 ### TAMAMLANANLAR
 - [x] ~~([#stats-on-dashboard](https://github.com/fatihemre/apteasy/tree/stats-on-dashboard)) Anasayfada toplam apartman, toplam daire, toplam yaşayan kişi ve toplam açık bakiye bilgileri kutu şeklinde görünür olsun.~~
 - [x] ~~([profile-page](https://github.com/fatihemre/apteasy/tree/profile-page)) Giriş yapan kullanıcı için bir profil sayfası ekleyelim. Bu profil sayfasında kullanıcılar kendi bilgilerini güncelleyebilsinler.~~
+- [x] ~~([localization](https://github.com/fatihemre/apteasy/tree/localization)) Birden fazla dil ekleyebilelim.~~
+- [x] ~~([theme-support](https://github.com/fatihemre/apteasy/tree/theme-support)) Sisteme TEMA desteği ekleyelim.~~

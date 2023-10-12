@@ -2,19 +2,19 @@
 {% block content %}
 
     <div class="form-container">
-        <h3 class="title">Apartman Düzenle</h3>
+        <h3 class="title">{{ __('Edit Building') }}</h3>
         <form action="/admin/buildings/edit/{{ building.id }}" method="post">
             <div class="input-row">
-                <label for="display_name">Apartman Adı:</label>
+                <label for="display_name">{{ __('Building Name') }}:</label>
                 <input type="display_name" id="display_name" name="display_name" value="{{ building.display_name }}">
             </div>
             <div class="input-row">
-                <label for="address">Apartman Adresi:</label>
+                <label for="address">{{ __('Building Address') }}:</label>
                 <input type="address" id="address" name="address" value="{{ building.address }}">
             </div>
             <div class="input-row">
                 <label></label>
-                <button type="submit">Güncelle</button>
+                <button type="submit">{{ __('Update') }}</button>
             </div>
         </form>
     </div>

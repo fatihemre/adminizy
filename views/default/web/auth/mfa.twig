@@ -1,0 +1,24 @@
+{% extends theme ~ '/base.twig' %}
+{% block content %}
+
+    <div class="language-switcher">
+        <a href="/set-locale/tr"><img src="/assets/images/flags/tr.svg" alt="" width="32"></a>
+        <a href="/set-locale/en"><img src="/assets/images/flags/en.svg" alt="" width="32"></a>
+    </div>
+
+    <div class="form-container login">
+
+        <h3 class="title">{{ __('Enter 2FA code') }}</h3>
+        <form action="/auth/2fa" method="post">
+            <div class="input-row">
+                <label for="secret">{{ __('2FA Code') }}:</label>
+                <input type="text" id="secret" name="secret" value="">
+            </div>
+            <div class="input-row">
+                <label></label>
+                <button type="submit">{{ __('Sign in') }}</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -5,7 +5,10 @@
         "twig/twig": "^3.7",
         "symfony/password-hasher": "^6.3",
         "moneyphp/money": "^4.2",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "pragmarx/google2fa": "^8.0",
+        "bacon/bacon-qr-code": "^2.0",
+        "ext-openssl": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"

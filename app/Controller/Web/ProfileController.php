@@ -5,15 +5,56 @@ namespace Apteasy\Controller\Web;
 use Apteasy\Controller\BaseController;
 use Apteasy\Entity\UserEntity;
 use Apteasy\Model\User;
+use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 class ProfileController extends BaseController
 {
+    public function twofactor() {
 
+        $encrypted = encrypt('MYTEXTisVeryGood');
+        $decrypted = decrypt($encrypted);
+
+        echo $encrypted;
+        echo '<hr>';
+        echo $decrypted;
+
+    }
     public function edit(): string
     {
-        return $this->view('edit');
+        $authorized_user = session('user');
+        $user = (new User())->fetch($authorized_user->email);
+        $qrcode_svg = null;
+
+        if($user->is_mfa_enabled && is_null($user->mfa_recovery_codes)) {
+            $google2fa = (new Google2FA());
+            $secret_key = $google2fa->generateSecretKey();
+
+            $save_secret_key = (new User())->saveSecretKey($user->id, encrypt($secret_key));
+
+            if($save_secret_key) {
+                $inlineUrl = $google2fa->getQRCodeUrl(
+                    config('SITE_NAME'),
+                    $user->email,
+                    $secret_key
+                );
+
+                $writer = new Writer(
+                    new ImageRenderer(
+                        new RendererStyle(200),
+                        new SvgImageBackEnd()
+                    )
+                );
+
+                $qrcode_svg = $writer->writeString($inlineUrl);
+            }
+        }
+
+        return $this->view('edit', ['qrcode_svg' => $qrcode_svg, 'user' => $user]);
     }
 
     public function update(Request $request): RedirectResponse
@@ -26,6 +67,7 @@ class ProfileController extends BaseController
         $entity->language = $request->get('language');
         $entity->theme = $request->get('theme');
         $entity->password = $request->get('password');
+        $entity->is_mfa_enabled = $request->get('is_mfa_enabled');
 
         if($entity->display_name === '' || $entity->email === '' || $entity->phone === '') {
             flash('danger', __('Please fill all inputs'));
@@ -52,6 +94,20 @@ class ProfileController extends BaseController
             return redirectTo('/admin/profile');
         }
 
+        $secret = $request->get('mfa_validation');
+        if(!is_null($secret)) {
+            $fetchUser = $user->fetch(session('user')->email);
+            $google2fa = (new Google2FA());
+            $valid = $google2fa->verifyKey(decrypt($fetchUser->mfa_secret_key), $secret);
+            if($valid) {
+                $strs = [];
+                for($i=0;$i<10;$i++) {
+                    $strs[$i] = generate_random_string(8) . '-' . generate_random_string(8);
+                }
+
+                $user->saveRecoveryCodes($entity->id,  encrypt(json_encode($strs, JSON_THROW_ON_ERROR)));
+            }
+        }
         $update = $user->update($entity);
 
         if($update) {

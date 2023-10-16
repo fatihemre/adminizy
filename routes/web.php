@@ -58,6 +58,7 @@ $webRouter->group('/admin', function($webRouter){
     $webRouter->group('/profile', function($webRouter) {
         $webRouter->get('', [ProfileController::class, 'edit']);
         $webRouter->post('', [ProfileController::class, 'update']);
+        $webRouter->get('/2fa', [ProfileController::class, 'twofactor']);
     });
 
 
@@ -66,5 +67,8 @@ $webRouter->group('/admin', function($webRouter){
 
 $webRouter->get('/auth/login', [AuthController::class, 'login'], ['before'=> AdminMiddleware::class]);
 $webRouter->post('/auth/login', [AuthController::class, 'check']);
+
+$webRouter->get('/auth/2fa', [AuthController::class, 'mfa'], ['before'=> AdminMiddleware::class]);
+$webRouter->post('/auth/2fa', [AuthController::class, 'mfaCheck']);
 
 $webRouter->get('/auth/logout', [AuthController::class, 'logout']);

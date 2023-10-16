@@ -34,6 +34,7 @@ class User
             'phone' => $entity->phone,
             'language' => $entity->language,
             'theme' => $entity->theme,
+            'is_mfa_enabled' => $entity->is_mfa_enabled,
             'user_id' => $entity->id
         ];
 
@@ -48,7 +49,20 @@ class User
                  phone=:phone, 
                  language=:language,
                  theme=:theme,
+                 is_mfa_enabled=:is_mfa_enabled,
                  updated_at=NOW() {$password_string} WHERE id=:user_id");
         return $sth->execute($bindings);
+    }
+
+    public function saveSecretKey(int $id, string $secret_key): bool
+    {
+        $sth = $this->connection->prepare("UPDATE users SET mfa_secret_key=:secret WHERE id=:id");
+        return $sth->execute(['secret' => $secret_key, 'id'=>$id]);
+    }
+
+    public function saveRecoveryCodes(int $id, string $recovery_codes): bool
+    {
+        $sth = $this->connection->prepare("UPDATE users SET mfa_recovery_codes=:secret WHERE id=:id");
+        return $sth->execute(['secret' => $recovery_codes, 'id'=>$id]);
     }
 }

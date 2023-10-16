@@ -30,6 +30,29 @@
                     <option value="modern" {{ user.theme == 'modern' ? 'selected': '' }}>Modern Tema</option>
                 </select>
             </div>
+            <div class="input-row">
+                <label for="is_mfa_enabled">{{ __('Enable 2FA') }}:</label>
+                <select name="is_mfa_enabled" id="is_mfa_enabled">
+                    <option value="1" {{ user.is_mfa_enabled == '1' ? 'selected': '' }}>Enabled</option>
+                    <option value="0" {{ user.is_mfa_enabled == '0' ? 'selected': '' }}>Disabled</option>
+                </select>
+            </div>
+            {% if user.is_mfa_enabled and user.mfa_recovery_codes is null %}
+                <div class="input-row">
+                    <label for="mfa_validation">{{ __('Validate 2FA') }}:</label>
+                    <input type="text" id="mfa_validation" name="mfa_validation" value="">
+                </div>
+                <div class="alert alert-info">
+                    {{ __('Please use QR CODE for adding to your 2FA app and enter your 6 digits password for validation') }}
+                </div>
+                <div class="input-row">
+                    <label for="qrcode-image"></label>
+                    {{ qrcode_svg|raw }}
+                </div>
+
+
+
+            {% endif %}
             <hr>
 
             <div class="alert alert-warning">

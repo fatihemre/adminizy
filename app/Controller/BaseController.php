@@ -32,7 +32,7 @@ class BaseController extends Controller
 
     public function view($path, $args=[]): string
     {
-        $args['user'] = session('user');
+        $args['user'] = $args['user'] ?? session('user');
         $args['flash'] = (new Session())->getFlashBag()->all();
         $args['siteName'] = config('SITE_NAME');
         $args['breadcrumbs'] = $this->breadcrumbs;

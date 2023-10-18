@@ -1,12 +1,13 @@
 ### BİR SONRAKİ YAYINDA YAPILACAKLAR
-- [ ] (new-modern-theme) YENİ TASARIM (w/ Tailwind CSS)
-
-### TODOLIST
-- [ ] (automation-for-maintenance-fee) Otomatik olarak tüm apartmanlara aidat ekleyen bir betik olsun. Bu betik belirlediğimiz tarihte çalışıp, o aynı aidatını tüm dairelere eklesin.
-- [ ] (add-maintenance-fee-column-for-buildings) Her apartmanın aidat bilgisi farklı olacağından, apartman eklerken bu apartmanın aidat miktarını da yazabilelim.
+- [ ] (vacate-the-flat) Bir apartmanın daireler listesinde "Daireyi Boşalt" butonu olsun. Bu butona tıklayınca tüm daire sakinlerini silindi olarak işaretlesin. Silinme tarihini elle girebilelim.
+- [ ] (transactions) Tüm parasal işlemleri transactions adlı tabloda toparlayalım. Tablo yapısını yayın sırasında planlarız.
 - [ ] (add-transaction) Bir apartmanın daireler listesinde "Transaction Ekle" butonu olsun. Ve aidat elden alınmışsa transaction manuel eklenebilsin.
 - [ ] (add-expense) Bir apartmanın daireler listesinde "Transaction Ekle" butonu olsun. Aidat dışında ekstra masraf (ne olduğu ile birlikte) eklenebilsin. Örneğin "otomatik otopark kapısı anahtarı bedeli" gibi.
-- [ ] (vacate-the-flat) Bir apartmanın daireler listesinde "Daireyi Boşalt" butonu olsun. Bu butona tıklayınca tüm daire sakinlerini silindi olarak işaretlesin. Silinme tarihini elle girebilelim.
+
+### TODOLIST
+- [ ] (new-modern-theme) YENİ TASARIM (w/ Tailwind CSS)
+- [ ] (automation-for-maintenance-fee) Otomatik olarak tüm apartmanlara aidat ekleyen bir betik olsun. Bu betik belirlediğimiz tarihte çalışıp, o aynı aidatını tüm dairelere eklesin.
+- [ ] (add-maintenance-fee-column-for-buildings) Her apartmanın aidat bilgisi farklı olacağından, apartman eklerken bu apartmanın aidat miktarını da yazabilelim.
 - [ ] (authentication-for-residents) Daire sakini aidat ödemek için sisteme giriş yapabilmeli.
 - [ ] (authorization-for-residents) Sisteme giriş yapabilen daire sakini sadece kendine özel sayfayı görebilmeli.
 - [ ] (transactions-for-residents-dashboard) Daire sakini sayfasında yalnızca transaction listesi, listede action olarak "Öde" butonu yer alsın.

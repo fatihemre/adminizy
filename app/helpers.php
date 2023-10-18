@@ -158,9 +158,16 @@ if(!function_exists('decrypt')){
     }
 }
 if(!function_exists('generate_random_string')) {
-    function generate_random_string($length = 10)
+    function generate_random_string($length = 10, $type=null)
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = match ($type) {
+            'lowercase' => 'abcdefghijklmnopqrstuvwxyz',
+            'uppercase' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            'numeric' => '0123456789',
+            default => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        };
+
+        // $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {

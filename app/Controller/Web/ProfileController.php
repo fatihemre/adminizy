@@ -8,21 +8,31 @@ use Apteasy\Model\User;
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 class ProfileController extends BaseController
 {
-    public function twofactor() {
 
-        $encrypted = encrypt('MYTEXTisVeryGood');
-        $decrypted = decrypt($encrypted);
+    public function generateRecoveryCodes(): JsonResponse
+    {
+        $authorized_user = session('user');
 
-        echo $encrypted;
-        echo '<hr>';
-        echo $decrypted;
+        $strs = [];
+        for($i=0;$i<10;$i++) {
+            $strs[$i] = generate_random_string(4, 'uppercase') . '-' . generate_random_string(4, 'uppercase');
+        }
+        (new User)->saveRecoveryCodes($authorized_user->id,  encrypt(json_encode($strs, JSON_THROW_ON_ERROR)));
 
+        return new JsonResponse($strs);
+    }
+
+    public function recoveryCodes(): JsonResponse {
+        $authorized_user = session('user');
+        $recovery_codes = (new User())->getRecoveryCodes($authorized_user->id);
+        return new JsonResponse(json_decode(decrypt($recovery_codes)));
     }
     public function edit(): string
     {
@@ -102,7 +112,7 @@ class ProfileController extends BaseController
             if($valid) {
                 $strs = [];
                 for($i=0;$i<10;$i++) {
-                    $strs[$i] = generate_random_string(8) . '-' . generate_random_string(8);
+                    $strs[$i] = generate_random_string(4, 'uppercase') . '-' . generate_random_string(4, 'uppercase');
                 }
 
                 $user->saveRecoveryCodes($entity->id,  encrypt(json_encode($strs, JSON_THROW_ON_ERROR)));

@@ -1,4 +1,8 @@
 {% extends theme ~ '/base.twig' %}
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/assets/{{ theme }}/js/pages/profile.js"></script>
+{% endblock %}
 {% block content %}
 
     <div class="form-container">
@@ -37,6 +41,15 @@
                     <option value="0" {{ user.is_mfa_enabled == '0' ? 'selected': '' }}>Disabled</option>
                 </select>
             </div>
+            {% if user.is_mfa_enabled and user.mfa_recovery_codes is not null %}
+                <div class="input-row">
+                    <label for="is_mfa_enabled">{{ __('Recovery Codes') }}:</label>
+                    <div id="recovery_codes">
+                        <button type="button" id="show_recovery_codes">Show</button>
+                        <button type="button" id="generate_recovery_codes">Generate</button>
+                    </div>
+                </div>
+            {% endif %}
             {% if user.is_mfa_enabled and user.mfa_recovery_codes is null %}
                 <div class="input-row">
                     <label for="mfa_validation">{{ __('Validate 2FA') }}:</label>
@@ -49,9 +62,6 @@
                     <label for="qrcode-image"></label>
                     {{ qrcode_svg|raw }}
                 </div>
-
-
-
             {% endif %}
             <hr>
 

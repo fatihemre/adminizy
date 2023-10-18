@@ -33,17 +33,31 @@ class AuthController extends BaseController
 
         $user = (new User())->fetch($authenticatedUser->email);
         $secret = $request->get('secret');
-        $google2fa = (new Google2FA());
-        $valid = $google2fa->verifyKey(decrypt($user->mfa_secret_key), $secret);
+        $recovery_codes = json_decode(decrypt($user->mfa_recovery_codes), true, 512, JSON_THROW_ON_ERROR);
+
+        $is_recovery_code = array_search($secret, $recovery_codes, true);
+
+        if($is_recovery_code !== false) {
+            unset($recovery_codes[$is_recovery_code]);
+            $recovery_codes = array_values($recovery_codes);
+            (new User)->saveRecoveryCodes($user->id, encrypt(json_encode($recovery_codes, JSON_THROW_ON_ERROR)));
+
+            $valid = true;
+        } else {
+            $google2fa = (new Google2FA());
+            $valid = $google2fa->verifyKey(decrypt($user->mfa_secret_key), $secret);
+
+        }
+
         if($valid) {
             $user->password = "*****";
             session('user', $user);
             cookie('lang', $user->language);
             return redirectTo('/admin');
-        } else {
-            flash('danger', __('Your 2FA code is not valid'));
-            return redirectTo('/auth/2fa');
         }
+
+        flash('danger', __('Your 2FA code is not valid'));
+        return redirectTo('/auth/2fa');
     }
 
     public function check(Request $request): RedirectResponse

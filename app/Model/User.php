@@ -65,4 +65,11 @@ class User
         $sth = $this->connection->prepare("UPDATE users SET mfa_recovery_codes=:secret WHERE id=:id");
         return $sth->execute(['secret' => $recovery_codes, 'id'=>$id]);
     }
+
+    public function getRecoveryCodes(int $id): string
+    {
+        $sth = $this->connection->prepare("SELECT mfa_recovery_codes FROM users WHERE id=:id");
+        $sth->execute(['id' => $id]);
+        return $sth->fetchColumn();
+    }
 }

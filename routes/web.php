@@ -58,7 +58,8 @@ $webRouter->group('/admin', function($webRouter){
     $webRouter->group('/profile', function($webRouter) {
         $webRouter->get('', [ProfileController::class, 'edit']);
         $webRouter->post('', [ProfileController::class, 'update']);
-        $webRouter->get('/2fa', [ProfileController::class, 'twofactor']);
+        $webRouter->post('/2fa/recovery-codes', [ProfileController::class, 'recoveryCodes']);
+        $webRouter->post('/2fa/generate-recovery-codes', [ProfileController::class, 'generateRecoveryCodes']);
     });
 
 

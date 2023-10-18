@@ -114,3 +114,65 @@ if(!function_exists('format_money')){
         return (new IntlMoneyFormatter($numberFormatter, $currencies))->format($money);
     }
 }
+if(!function_exists('encrypt')){
+    function encrypt($plaintext, $cipher = "aes-256-gcm") {
+        if (!in_array($cipher, openssl_get_cipher_methods())) {
+            return false;
+        }
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher));
+        $tag = null;
+        $ciphertext = openssl_encrypt(
+            gzcompress($plaintext),
+            $cipher,
+            base64_decode(config('APP_SECRET')),
+            $options=0,
+            $iv,
+            $tag,
+        );
+        return json_encode([
+            "ciphertext" => base64_encode($ciphertext),
+            "cipher" => $cipher,
+            "iv" => base64_encode($iv),
+            "tag" => base64_encode($tag),
+        ], JSON_THROW_ON_ERROR);
+    }
+}
+
+if(!function_exists('decrypt')){
+    function decrypt($cipherjson) {
+        try {
+            $json = json_decode($cipherjson, true, 2,  JSON_THROW_ON_ERROR);
+        } catch (Exception $e) {
+            return false;
+        }
+        return gzuncompress(
+            openssl_decrypt(
+                base64_decode($json['ciphertext']),
+                $json['cipher'],
+                base64_decode(config('APP_SECRET')),
+                $options=0,
+                base64_decode($json['iv']),
+                base64_decode($json['tag'])
+            )
+        );
+    }
+}
+if(!function_exists('generate_random_string')) {
+    function generate_random_string($length = 10, $type=null)
+    {
+        $characters = match ($type) {
+            'lowercase' => 'abcdefghijklmnopqrstuvwxyz',
+            'uppercase' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            'numeric' => '0123456789',
+            default => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        };
+
+        // $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+}

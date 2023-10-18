@@ -11,6 +11,9 @@ class UserEntity
     public $phone;
     public $language;
     public $theme;
+    public $is_mfa_enabled;
+    public $mfa_secret_key;
+    public $mfa_recovery_codes;
     public $created_at;
     public $updated_at;
     public $deleted_at;

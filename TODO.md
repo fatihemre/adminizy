@@ -1,6 +1,5 @@
 ### BİR SONRAKİ YAYINDA YAPILACAKLAR
 - [ ] (new-modern-theme) YENİ TASARIM (w/ Tailwind CSS)
-- [ ] (2fa-for-users) Kullanıcı 2FA ile giriş etkinleştirebilsin.
 
 ### TODOLIST
 - [ ] (automation-for-maintenance-fee) Otomatik olarak tüm apartmanlara aidat ekleyen bir betik olsun. Bu betik belirlediğimiz tarihte çalışıp, o aynı aidatını tüm dairelere eklesin.
@@ -28,3 +27,4 @@ Eğer bir talebiniz varsa lütfen katkıda bulunarak buraya ekleme yapın ve pr 
 - [x] ~~([profile-page](https://github.com/fatihemre/apteasy/tree/profile-page)) Giriş yapan kullanıcı için bir profil sayfası ekleyelim. Bu profil sayfasında kullanıcılar kendi bilgilerini güncelleyebilsinler.~~
 - [x] ~~([localization](https://github.com/fatihemre/apteasy/tree/localization)) Birden fazla dil ekleyebilelim.~~
 - [x] ~~([theme-support](https://github.com/fatihemre/apteasy/tree/theme-support)) Sisteme TEMA desteği ekleyelim.~~
+- [x] ~~([2fa-for-users](https://github.com/fatihemre/apteasy/tree/2fa-for-users)) Kullanıcı 2FA ile giriş etkinleştirebilsin.~~

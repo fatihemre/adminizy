@@ -58,6 +58,8 @@ $webRouter->group('/admin', function($webRouter){
     $webRouter->group('/profile', function($webRouter) {
         $webRouter->get('', [ProfileController::class, 'edit']);
         $webRouter->post('', [ProfileController::class, 'update']);
+        $webRouter->post('/2fa/recovery-codes', [ProfileController::class, 'recoveryCodes']);
+        $webRouter->post('/2fa/generate-recovery-codes', [ProfileController::class, 'generateRecoveryCodes']);
     });
 
 
@@ -66,5 +68,8 @@ $webRouter->group('/admin', function($webRouter){
 
 $webRouter->get('/auth/login', [AuthController::class, 'login'], ['before'=> AdminMiddleware::class]);
 $webRouter->post('/auth/login', [AuthController::class, 'check']);
+
+$webRouter->get('/auth/2fa', [AuthController::class, 'mfa'], ['before'=> AdminMiddleware::class]);
+$webRouter->post('/auth/2fa', [AuthController::class, 'mfaCheck']);
 
 $webRouter->get('/auth/logout', [AuthController::class, 'logout']);

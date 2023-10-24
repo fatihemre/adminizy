@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 define('APP_PATH', realpath(__DIR__) . '/..');
 
-require_once './vendor/autoload.php';
+require_once APP_PATH . '/vendor/autoload.php';
 
 try {
 
@@ -33,7 +33,6 @@ try {
     require_once APP_PATH . '/routes/web.php';
 
     $router->run();
-
 
 } catch (\Throwable $throwable) {
 

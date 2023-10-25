@@ -25,6 +25,6 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
-      MYSQL_DATABASE: mydockerdb
+      MYSQL_DATABASE: apteasy
 volumes:
   mysqldata:

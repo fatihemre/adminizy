@@ -75,7 +75,7 @@ if(!function_exists('cookie')) {
             ->withExpires($expire_date);
         $response = new Response();
         $response->headers->setCookie($cookie);
-        $response->send();
+        $response->sendHeaders();
     }
 }
 
